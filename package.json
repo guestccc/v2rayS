@@ -1,7 +1,7 @@
 {
-  "name": "cms-template",
-  "version": "0.1.0",
-  "private": true,
+  "name": "v2rays",
+  "version": "1.0.0",
+  "description": "开发中...",
   "scripts": {
     "start": "yarn serve",
     "serve": "vue-cli-service serve",
@@ -32,5 +32,21 @@
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DashanY/v2rayS.git"
+  },
+  "keywords": [
+    "node",
+    "v2ray",
+    "vue"
+  ],
+  "author": "young",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DashanY/v2rayS/issues"
+  },
+  "homepage": "https://github.com/DashanY/v2rayS#readme"
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="router-view">
-    <h1>index</h1>
+    <router-link
+      to="/login">退出登陆</router-link>
     <router-view/>
   </div>
 </template>

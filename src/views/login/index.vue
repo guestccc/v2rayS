@@ -7,7 +7,9 @@
     <a-input v-model.trim="body.pwd">
       <a-icon slot="prefix" type="user" />
     </a-input>
-    <a-button type="primary">登录</a-button>
+    <router-link to="/">
+      <a-button type="primary">登录</a-button>
+    </router-link>
   </div>
 </template>
 

@@ -1,9 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Index from '@/views/index.vue';
 
 import login from '@/router/login';
-
+import main from '@/router/main';
 
 Vue.use(Router);
 
@@ -12,11 +11,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      name: 'index',
       path: '/',
-      component: Index,
+      redirect: '/main',
     },
     login,
+    main,
     // {
     //   name: '404',
     //   path: '*',

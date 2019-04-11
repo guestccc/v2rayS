@@ -2,8 +2,11 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router/index';
 import store from './store/index';
-import './styles/app.scss';
-import './plugins/antd';
+
+import 'normalize.css/normalize.css'; // A modern alternative to CSS resets
+import './styles/app.scss'; // global css
+import './plugins/antd'; // antd
+import './permission'; // router 拦截
 
 Vue.config.productionTip = false;
 

@@ -2,10 +2,15 @@
   <div class="login">
     <div class="title">系统登录</div>
     <a-input v-model.trim="body.acc">
-      <a-icon slot="prefix" type="user" />
+      <a-icon
+        slot="prefix"
+        type="user" />
     </a-input>
     <a-input v-model.trim="body.pwd">
-      <a-icon slot="prefix" type="lock" />
+      <a-icon
+        slot="prefix"
+        type="lock" />
+      <!-- <a-icon slot="suffix" type="eye" /> -->
     </a-input>
     <router-link to="/">
       <a-button type="primary">登录</a-button>
@@ -34,22 +39,26 @@ export default {
     font-weight: bold;
     text-align: center;
   }
-  .ant-input-affix-wrapper {
+  /deep/ .ant-input-affix-wrapper {
     margin-bottom: 10px;
     height: 50px;
-    /deep/ .ant-input-prefix {
+    .ant-input-prefix {
       font-size: 18px;
-      color: #fff;
+      color: #ddd;
     }
-    /deep/ .ant-input {
-      color: #fff;
+    .ant-input {
+      color: #ddd;
       background: #2a3444;
       border-color: #3b4457;
+      &:not(:first-child) {
+        padding-left: 40px;
+      }
     }
   }
   .ant-btn {
     width: 100%;
     height: 50px;
+    font-size: 18px;
   }
 }
 </style>

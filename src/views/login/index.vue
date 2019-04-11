@@ -5,7 +5,7 @@
       <a-icon slot="prefix" type="user" />
     </a-input>
     <a-input v-model.trim="body.pwd">
-      <a-icon slot="prefix" type="user" />
+      <a-icon slot="prefix" type="lock" />
     </a-input>
     <router-link to="/">
       <a-button type="primary">登录</a-button>
@@ -26,8 +26,7 @@ export default {
 };
 </script>
 
-
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
   .title {
     margin-bottom: 20px;
@@ -38,12 +37,11 @@ export default {
   .ant-input-affix-wrapper {
     margin-bottom: 10px;
     height: 50px;
-    .ant-input-prefix {
+    /deep/ .ant-input-prefix {
       font-size: 18px;
       color: #fff;
     }
-    .ant-input {
-      padding-left: 35px;
+    /deep/ .ant-input {
       color: #fff;
       background: #2a3444;
       border-color: #3b4457;

@@ -1,10 +1,11 @@
 <template>
-  <router-view id="app"/>
+  <router-view
+    id="app"
+    class="app"/>
 </template>
 
-<style lang="scss">
-// .app {
-//   width: 100%;
-//   min-height: 100%;
-// }
+<style lang="scss" scoped>
+.app {
+  min-width: 1280px;
+}
 </style>

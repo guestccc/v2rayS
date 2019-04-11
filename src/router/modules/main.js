@@ -1,13 +1,20 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Main from '@/views/main.vue';
+import Layout from '@/layout/index.vue';
+import Main from '@/views/main/index.vue';
 
 Vue.use(Router);
 
 export default {
-  name: 'main',
   path: '/main',
-  component: Main,
+  component: Layout,
+  children: [
+    {
+      name: 'main',
+      path: '',
+      component: Main,
+    },
+  ],
 };
 
 // routes: [

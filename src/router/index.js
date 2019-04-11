@@ -1,15 +1,25 @@
-import RouterView from '@/views/index.vue';
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Index from '@/views/index/index.vue';
+import login from '@/router/login';
+import main from '@/router/main';
 
-export default {
-  path: '/',
-  component: RouterView,
-  children: [
+Vue.use(Router);
+
+export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
     {
-      name: 'index',
-      path: '',
-      component: Index,
+      path: '/',
+      redirect: '/main',
     },
+    login,
+    main,
+    // {
+    //   name: '404',
+    //   path: '*',
+    //   component: NoFind,
+    // },
   ],
 };

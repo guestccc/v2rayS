@@ -1,6 +1,6 @@
 import RouterView from '@/views/error.vue';
 
-import NotFind from '@/views/error/404.vue';
+import Code404 from '@/views/error/code404.vue';
 
 export default {
   path: '*',
@@ -9,7 +9,7 @@ export default {
     {
       name: 'notFind',
       path: '',
-      component: NotFind,
+      component: Code404,
     },
   ],
 };

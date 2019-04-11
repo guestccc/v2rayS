@@ -1,7 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Layout from '@/layout/index.vue';
-import Main from '@/views/main/index.vue';
+
+import Userinfo from '@/views/main/userinfo/index.vue';
+import Sys from '@/views/main/sys/index.vue';
+import Home from '@/views/main/home/index.vue';
+import User from '@/views/main/user/index.vue';
 
 Vue.use(Router);
 
@@ -10,9 +14,28 @@ export default {
   component: Layout,
   children: [
     {
-      name: 'main',
       path: '',
-      component: Main,
+      redirect: '/main/userinfo',
+    },
+    {
+      name: 'userinfo',
+      path: 'userinfo',
+      component: Userinfo,
+    },
+    {
+      name: 'sys',
+      path: 'sys',
+      component: Sys,
+    },
+    {
+      name: 'home',
+      path: 'home',
+      component: Home,
+    },
+    {
+      name: 'user',
+      path: 'user',
+      component: User,
     },
   ],
 };

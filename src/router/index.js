@@ -5,8 +5,6 @@ import login from '@/router/login';
 import main from '@/router/main/index';
 import error from '@/router/error';
 
-// const login = () => import('@/router/login');
-
 Vue.use(Router);
 
 export default new Router({

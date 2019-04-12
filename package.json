@@ -5,6 +5,7 @@
   "scripts": {
     "start": "yarn serve",
     "serve": "vue-cli-service serve",
+    "serve:pro": "vue-cli-service serve --mode production",
     "serve:test": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"

@@ -1,4 +1,4 @@
-import DemosList from '@/views/main/demo/index.vue';
+const DemosList = import(/* webpackChunkName: "demo" */ '@/views/main/demo/index.vue');
 
 export default {
   name: 'demo',

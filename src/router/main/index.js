@@ -1,8 +1,8 @@
-import Layout from '@/layout/index.vue';
-import Userinfo from '@/views/main/userinfo/index.vue';
-
 import demos from './demos';
 import demo from './demo';
+
+const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
+const Userinfo = () => import(/* webpackChunkName: "userinfo" */ '@/views/main/userinfo/index.vue');
 
 export default {
   path: '/main',

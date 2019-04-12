@@ -1,7 +1,6 @@
-import RouterView from '@/views/login.vue';
-
-import Login from '@/views/login/index.vue';
-import Pwd from '@/views/login/pwd.vue';
+const RouterView = () => import(/* webpackChunkName: "login" */ '@/views/login.vue');
+const Login = () => import(/* webpackChunkName: "login" */ '@/views/login/index.vue');
+const Pwd = () => import(/* webpackChunkName: "login" */ '@/views/login/pwd.vue');
 
 export default {
   path: '/login',

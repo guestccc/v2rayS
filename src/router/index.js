@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import login from '@/router/login';
-import main from '@/router/main';
+import main from '@/router/main/index';
 import error from '@/router/error';
 
 Vue.use(Router);

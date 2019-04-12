@@ -1,4 +1,4 @@
-<template v-if="">
+<template>
   <a-menu
     mode="inline"
     theme="light"
@@ -22,7 +22,7 @@
         v-else-if="!item.noMenu"
         :key="`${path}/${item.path}`"
         @click="eventMenu">
-        <a-icon type="mail" />
+        <a-icon type="appstore" />
         {{ item.name }}
       </a-menu-item>
     </template>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import mainRouter from '@/router/main';
+import mainRouter from '@/router/main/index';
 
 export default {
   data() {

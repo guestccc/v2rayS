@@ -1,36 +1,54 @@
-<template>
+<template v-if="">
   <a-menu
     mode="inline"
     theme="light"
+    :defaultSelectedKeys="defaultSelectedKeys"
   >
-    <a-menu-item key="1">
-      <a-icon type="mail" />
-      Navigation One
-    </a-menu-item>
-    <a-sub-menu key="sub1">
-      <span slot="title">
-        <a-icon type="appstore" />
-        <span>Navigation Three</span>
-      </span>
-      <a-menu-item key="3">Option 3</a-menu-item>
-      <a-menu-item key="4">Option 4</a-menu-item>
-    </a-sub-menu>
+    <template
+      v-for="item in menuList">
+      <a-sub-menu
+        v-if="item.children"
+        :key="`${path}/${item.path}`">
+        <span slot="title">
+          <a-icon type="appstore" />
+          <span>{{ item.name }}</span>
+        </span>
+        <a-menu-item
+          v-for="i in item.children"
+          :key="`${path}/${item.path}/${i.path}`"
+          @click="eventMenu">{{ i.name }}</a-menu-item>
+      </a-sub-menu>
+      <a-menu-item
+        v-else-if="!item.noMenu"
+        :key="`${path}/${item.path}`"
+        @click="eventMenu">
+        <a-icon type="mail" />
+        {{ item.name }}
+      </a-menu-item>
+    </template>
   </a-menu>
 </template>
 
 <script>
-import mainRouter from '@/router/modules/main';
+import mainRouter from '@/router/main';
 
 export default {
   data() {
     return {
-      mainRouter,
+      menuList: [],
+      path: '',
+      defaultSelectedKeys: [],
     };
   },
+  methods: {
+    eventMenu(e) {
+      this.$router.push(e.key);
+    },
+  },
   created() {
-    console.log('------------');
-    console.log(mainRouter);
-    console.log('------------');
+    this.menuList = mainRouter.children;
+    this.path = mainRouter.path;
+    this.defaultSelectedKeys = [this.$route.path];
   },
 };
 </script>

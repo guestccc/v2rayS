@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import login from '@/router/modules/login';
-import main from '@/router/modules/main';
-import error from '@/router/modules/error';
+import login from '@/router/login';
+import main from '@/router/main';
+import error from '@/router/error';
 
 Vue.use(Router);
 

@@ -1,6 +1,7 @@
 import userinfo from './userinfo';
-import demos from './demos';
-import demo from './demo';
+import single from './single';
+import singles from './singles';
+import many from './many';
 
 const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
 
@@ -14,7 +15,8 @@ export default {
       noMenu: true,
     },
     userinfo,
-    demos,
-    demo,
+    single,
+    singles,
+    many,
   ],
 };

@@ -4,8 +4,11 @@
       <y-sider/>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header>
+      <a-layout-header class="nav">
         <y-header/>
+      </a-layout-header>
+      <a-layout-header class="bread">
+        <y-bread/>
       </a-layout-header>
       <a-layout-content>
         <y-content/>
@@ -20,6 +23,7 @@
 <script>
 import YSider from './components/y-sider/index.vue';
 import YHeader from './components/y-header/index.vue';
+import YBread from './components/y-bread/index.vue';
 import YContent from './components/y-content/index.vue';
 import YFooter from './components/y-footer/index.vue';
 
@@ -27,6 +31,7 @@ export default {
   components: {
     YSider,
     YHeader,
+    YBread,
     YContent,
     YFooter,
   },
@@ -42,10 +47,17 @@ export default {
     background: #fff;
   }
   .ant-layout-header {
-    padding: 0;
-    height: 64px;
-    line-height: normal;
-    background: #538cd3;
+    &.nav {
+      padding: 0;
+      height: 64px;
+      line-height: initial;
+      background: #538cd3;
+    }
+    &.bread {
+      padding: 5px 6px;
+      height: initial;
+      background: #fff;
+    }
   }
   .ant-layout-content {
     padding: 0;

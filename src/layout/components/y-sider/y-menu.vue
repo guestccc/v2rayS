@@ -47,7 +47,7 @@ export default {
       this.$router.push(e.key);
     },
     handleS(e) {
-      return e.children && !e.children[0].path;
+      return !e.children || !e.children[0].path;
     },
   },
   created() {
@@ -60,5 +60,4 @@ export default {
 
 
 <style lang="scss" scoped>
-// .ant-menu {}
 </style>

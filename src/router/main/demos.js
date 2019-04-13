@@ -9,12 +9,12 @@ export default {
   component: MainLayout,
   children: [
     {
-      name: 'demoList',
+      name: 'list',
       path: 'list',
       component: DemosList,
     },
     {
-      name: 'demoClassify',
+      name: 'classify',
       path: 'classify',
       component: DemosClassify,
     },

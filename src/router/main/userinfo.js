@@ -5,6 +5,7 @@ const UserInfo = () => import(/* webpackChunkName: "demo" */ '@/views/main/useri
 export default {
   path: 'userinfo',
   component: MainLayout,
+  noMenu: true,
   children: [
     {
       name: 'userinfo',

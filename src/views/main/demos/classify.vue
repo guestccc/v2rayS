@@ -1,3 +1,5 @@
 <template>
-  <div>classify</div>
+  <div>
+    <h1>classify</h1>
+  </div>
 </template>

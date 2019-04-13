@@ -1,7 +1,11 @@
 <template>
-  <router-view
-    id="app"
-    class="app"/>
+  <transition
+    name="fade-transform"
+    mode="out-in">
+    <router-view
+      id="app"
+      class="app"/>
+  </transition>
 </template>
 
 <style lang="scss" scoped>

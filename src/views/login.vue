@@ -11,11 +11,6 @@ export default {
       current: ['mail'],
     };
   },
-  created() {
-    console.log('------------');
-    console.log(process.env.VUE_APP_BASE_API);
-    console.log('------------');
-  },
 };
 </script>
 

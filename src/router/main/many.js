@@ -9,6 +9,7 @@ export default {
   component: MainLayout,
   meta: {
     name: 'many',
+    disabled: true,
   },
   children: [
     {
@@ -30,7 +31,6 @@ export default {
           component: ManySingles,
         },
         {
-          name: 'add',
           path: 'add',
           component: ManySinglesAdd,
           meta: {

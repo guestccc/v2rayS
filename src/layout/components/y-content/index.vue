@@ -1,6 +1,6 @@
 <template>
   <transition
-    name="fade-transform"
+    name="slide-transform"
     mode="out-in">
     <keep-alive>
       <router-view

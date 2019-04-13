@@ -17,8 +17,8 @@ export default new Router({
       path: '/',
       redirect: '/main',
     },
-    login,
     main,
+    login,
     error,
     // {
     //   name: '404',

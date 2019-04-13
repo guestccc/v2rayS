@@ -5,5 +5,8 @@ const UserInfo = () => import(/* webpackChunkName: "userinfo" */ '@/views/main/u
 export default {
   path: 'userinfo',
   component: UserInfo,
-  noMenu: true,
+  meta: {
+    name: 'userinfo',
+    noMenu: true,
+  },
 };

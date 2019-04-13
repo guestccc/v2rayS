@@ -6,20 +6,20 @@
   >
     <template
       v-for="item in menuList">
-      <template v-if="!item.noMenu">
+      <template v-if="item.meta && !item.meta.noMenu">
         <a-menu-item
           v-if="handleS(item)"
           :key="`${path}/${item.path}`"
           @click="eventMenu">
           <a-icon type="appstore" />
-          {{ item.meta && item.meta.name }}
+          {{ item.meta.name }}
         </a-menu-item>
         <a-sub-menu
           v-else
           :key="`${path}/${item.path}`">
           <span slot="title">
             <a-icon type="appstore" />
-            <span>{{ item.meta && item.meta.name }}</span>
+            <span>{{ item.meta.name }}</span>
           </span>
           <a-menu-item
             v-for="i in item.children"

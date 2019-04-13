@@ -9,11 +9,6 @@ export default {
   path: '/main',
   component: Layout,
   children: [
-    {
-      path: '',
-      redirect: '/main/userinfo',
-      noMenu: true,
-    },
     userinfo,
     single,
     singles,

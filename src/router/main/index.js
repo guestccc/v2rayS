@@ -1,8 +1,8 @@
+import userinfo from './userinfo';
 import demos from './demos';
 import demo from './demo';
 
 const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
-const Userinfo = () => import(/* webpackChunkName: "userinfo" */ '@/views/main/userinfo/index.vue');
 
 export default {
   path: '/main',
@@ -13,12 +13,7 @@ export default {
       redirect: '/main/userinfo',
       noMenu: true,
     },
-    {
-      name: '用户信息',
-      icon: 'icon',
-      path: 'userinfo',
-      component: Userinfo,
-    },
+    userinfo,
     demos,
     demo,
   ],

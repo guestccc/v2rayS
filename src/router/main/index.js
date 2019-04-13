@@ -4,6 +4,7 @@ import singles from './singles';
 import many from './many';
 
 const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
+const NotFind = () => import('@/views/error/notFind.vue');
 
 export default {
   path: '/main',
@@ -17,5 +18,13 @@ export default {
     single,
     singles,
     many,
+    {
+      path: '*',
+      component: NotFind,
+      meta: {
+        name: 'Not Find',
+        noMenu: true,
+      },
+    },
   ],
 };

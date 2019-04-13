@@ -2,6 +2,7 @@
   <div>
     <h1>single</h1>
     <a-input v-model="value"/>
+    <router-link to="404">404</router-link>
   </div>
 </template>
 

@@ -56,6 +56,7 @@ export default {
 
 <style lang="scss" scoped>
 .sider {
+  height: 100%;
   .logo-box {
     height: 64px;
     line-height: 64px;
@@ -64,6 +65,9 @@ export default {
     font-weight: 500;
     color: #fff;
     background: #538cd3;
+  }
+  .ant-menu {
+    height: calc(100% - 64px);
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    404
+  <div class="not-find">
+    <h1>404</h1>
   </div>
 </template>
 
@@ -12,5 +12,8 @@ export default {
 };
 </script>
 
-<style lang="scss" module="s">
+<style lang="scss" scoped>
+.not-find {
+  height: calc(100% - 14px);
+}
 </style>

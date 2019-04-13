@@ -5,19 +5,25 @@ const ManySingles = () => import(/* webpackChunkName: "manySingles" */ '@/views/
 const ManySinglesAdd = () => import(/* webpackChunkName: "manySingles" */ '@/views/main/many/singles/add.vue');
 
 export default {
-  name: 'many',
   path: 'many',
   component: MainLayout,
+  meta: {
+    name: 'many',
+  },
   children: [
     {
-      name: 'single',
       path: 'single',
       component: ManySingle,
+      meta: {
+        name: 'single',
+      },
     },
     {
-      name: 'singles',
       path: 'singles',
       component: MainLayout,
+      meta: {
+        name: 'singles',
+      },
       children: [
         {
           path: '',
@@ -27,6 +33,9 @@ export default {
           name: 'add',
           path: 'add',
           component: ManySinglesAdd,
+          meta: {
+            name: 'add',
+          },
         },
       ],
     },

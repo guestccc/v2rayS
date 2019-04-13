@@ -4,18 +4,22 @@ const DemoList = () => import(/* webpackChunkName: "singles" */ '@/views/main/si
 const DemoAdd = () => import(/* webpackChunkName: "singles" */ '@/views/main/singles/add.vue');
 
 export default {
-  name: 'singles',
   path: 'singles',
   component: MainLayout,
+  meta: {
+    name: 'singles',
+  },
   children: [
     {
       path: '',
       component: DemoList,
     },
     {
-      name: 'add',
       path: 'add',
       component: DemoAdd,
+      meta: {
+        name: 'add',
+      },
     },
   ],
 };

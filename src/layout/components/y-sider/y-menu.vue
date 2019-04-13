@@ -12,19 +12,19 @@
           :key="`${path}/${item.path}`"
           @click="eventMenu">
           <a-icon type="appstore" />
-          {{ item.name || item.children[0].name }}
+          {{ item.meta && item.meta.name }}
         </a-menu-item>
         <a-sub-menu
           v-else
           :key="`${path}/${item.path}`">
           <span slot="title">
             <a-icon type="appstore" />
-            <span>{{ item.name }}</span>
+            <span>{{ item.meta && item.meta.name }}</span>
           </span>
           <a-menu-item
             v-for="i in item.children"
             :key="`${path}/${item.path}/${i.path}`"
-            @click="eventMenu">{{ i.name }}</a-menu-item>
+            @click="eventMenu">{{ i.meta && i.meta.name }}</a-menu-item>
         </a-sub-menu>
       </template>
     </template>

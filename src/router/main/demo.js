@@ -1,7 +1,21 @@
-const DemosList = import(/* webpackChunkName: "demo" */ '@/views/main/demo/index.vue');
+import MainLayout from '@/components/main-layout.vue';
+
+const DemoList = () => import(/* webpackChunkName: "demo" */ '@/views/main/demo/index.vue');
+const DemoAdd = () => import(/* webpackChunkName: "demo" */ '@/views/main/demo/add.vue');
 
 export default {
-  name: 'demo',
   path: 'demo',
-  component: DemosList,
+  component: MainLayout,
+  children: [
+    {
+      name: 'demo',
+      path: '',
+      component: DemoList,
+    },
+    {
+      name: 'add',
+      path: 'add',
+      component: DemoAdd,
+    },
+  ],
 };

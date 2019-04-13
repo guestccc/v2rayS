@@ -1,6 +1,24 @@
 <template>
-  <router-view class="main-view"/>
+  <transition
+    name="fade-transform"
+    mode="out-in">
+    <keep-alive>
+      <router-view
+        :key="key"
+        class="main-view" />
+    </keep-alive>
+  </transition>
 </template>
+
+<script>
+export default {
+  computed: {
+    key() {
+      return this.$route.fullPath;
+    },
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 .main-view {

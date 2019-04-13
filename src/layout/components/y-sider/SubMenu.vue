@@ -1,9 +1,7 @@
 <template functional>
-  <a-sub-menu
-    :key="props.menuList.path"
-  >
+  <a-sub-menu :key="props.menuList.path">
     <span slot="title">
-      <a-icon type="appstore"/>
+      <a-icon :type="props.menuList.meta.icon || 'appstore'"/>
       <span>{{ props.menuList.meta.name }}</span>
     </span>
     <template v-for="item in props.menuList.children">
@@ -17,8 +15,7 @@
         <sub-menu
           v-else
           :key="item.path"
-          :menu-list="item"
-        />
+          :menu-list="item"/>
       </template>
     </template>
   </a-sub-menu>

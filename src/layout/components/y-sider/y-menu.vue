@@ -11,14 +11,14 @@
           v-if="handleS(item)"
           :key="`${path}/${item.path}`"
           @click="eventMenu">
-          <a-icon type="appstore" />
+          <a-icon :type="item.meta.icon || 'appstore'" />
           {{ item.meta.name }}
         </a-menu-item>
         <a-sub-menu
           v-else
           :key="`${path}/${item.path}`">
           <span slot="title">
-            <a-icon type="appstore" />
+            <a-icon :type="item.meta.icon || 'appstore'" />
             <span>{{ item.meta.name }}</span>
           </span>
           <a-menu-item

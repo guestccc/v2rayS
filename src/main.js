@@ -7,8 +7,11 @@ import './styles/index.scss'; // global css
 import App from './App.vue';
 import router from './router';
 import store from './store/index';
+import { keepAlive } from './mixins';
 
 import './permission'; // router 拦截
+
+Vue.mixin(keepAlive);
 
 Vue.config.productionTip = false;
 

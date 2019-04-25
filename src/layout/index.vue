@@ -1,68 +1,53 @@
 <template>
-  <a-layout>
-    <a-layout-sider>
+  <div class="main">
+    <y-header/>
+    <div class="content">
       <y-sider/>
-    </a-layout-sider>
-    <a-layout>
-      <a-layout-header class="nav">
-        <y-header/>
-      </a-layout-header>
-      <a-layout-header class="bread">
-        <y-bread/>
-      </a-layout-header>
-      <a-layout-content>
-        <y-content/>
-      </a-layout-content>
-      <a-layout-footer v-if="false">
-        <y-footer/>
-      </a-layout-footer>
-    </a-layout>
-  </a-layout>
+      <div class="content">
+        <y-nav/>
+        <y-router-view class="layout-flex"/>
+        <div class="flex">
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import YSider from './components/y-sider/index.vue';
-import YHeader from './components/y-header/index.vue';
-import YBread from './components/y-bread/index.vue';
-import YContent from './components/y-content/index.vue';
-import YFooter from './components/y-footer/index.vue';
+import YHeader from './YHeader.vue';
+import YSider from './y-sider/index.vue';
+import YNav from './YNav.vue';
+import YRouterView from './YRouterView.vue';
 
 export default {
   components: {
-    YSider,
     YHeader,
-    YBread,
-    YContent,
-    YFooter,
+    YSider,
+    YNav,
+    YRouterView,
   },
 };
 </script>
 
 
 <style lang="scss" scoped>
-.ant-layout {
-  width: 100%;
+.main {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  .ant-layout-sider {
-    background: #fff;
-  }
-  .ant-layout-header {
-    &.nav {
-      padding: 0;
-      height: 64px;
-      line-height: initial;
-      background: #538cd3;
+  background: #ebf0f9;
+  overflow: hidden;
+  > .content {
+    flex: 1;
+    display: flex;
+    > .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      > .layout-flex {
+        flex: 1;
+      }
     }
-    &.bread {
-      padding: 5px 6px;
-      height: initial;
-      background: #fff;
-    }
-  }
-  .ant-layout-content {
-    padding: 0;
-    line-height: normal;
-    background: #ebf0f9;
   }
 }
 </style>

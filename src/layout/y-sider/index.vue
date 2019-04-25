@@ -1,5 +1,7 @@
 <template>
   <a-menu
+    :defaultSelectedKeys="defaultSelectedKeys"
+    ref="menu"
     mode="inline"
     class="y-sider">
     <template v-for="item in menuList">
@@ -30,6 +32,7 @@ export default {
     return {
       path: '',
       menuList: [],
+      defaultSelectedKeys: ['/main/singles'],
     };
   },
   methods: {
@@ -41,8 +44,14 @@ export default {
     },
   },
   created() {
-    this.menuList = mainRouter.children;
-    this.path = mainRouter.path;
+    const { children, path } = mainRouter;
+    this.menuList = children;
+    this.path = path;
+  },
+  mounted() {
+    console.log('------------');
+    console.log(this.$refs.menu);
+    console.log('------------');
   },
   components: {
     SubMenu,

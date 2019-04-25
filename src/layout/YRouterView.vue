@@ -3,11 +3,11 @@
     <transition
       name="slide-transform"
       mode="out-in">
-      <keep-alive>
+      <!-- <keep-alive> -->
         <router-view
           :key="key"
           class="main-view"/>
-      </keep-alive>
+      <!-- </keep-alive> -->
     </transition>
   </div>
 </template>

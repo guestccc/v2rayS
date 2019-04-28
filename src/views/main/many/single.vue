@@ -1,16 +1,16 @@
 <template>
   <div>
-    404
+    <h1>single</h1>
+    <a-input v-model="value"/>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      value: 'single',
+    };
   },
 };
 </script>
-
-<style lang="scss" module="s">
-</style>

@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import login from '@/router/login';
 import main from '@/router/main/index';
-import error from '@/router/error';
+import login from '@/router/login';
+
+import NotFind from '@/views/error/notFind.vue';
 
 Vue.use(Router);
 
@@ -15,13 +16,11 @@ export default new Router({
       path: '/',
       redirect: '/main',
     },
-    login,
     main,
-    error,
-    // {
-    //   name: '404',
-    //   path: '*',
-    //   component: NoFind,
-    // },
+    login,
+    {
+      path: '*',
+      component: NotFind,
+    },
   ],
 });

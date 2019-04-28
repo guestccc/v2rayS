@@ -6,7 +6,7 @@ export default {
   path: 'userinfo',
   component: UserInfo,
   meta: {
-    name: 'userinfo',
+    name: '个人中心',
     noMenu: true,
   },
 };

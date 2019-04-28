@@ -1,13 +1,13 @@
 <template>
   <div class="y-header">
     <div class="logo">
-      CMS
+      v2rayS
     </div>
     <div class="right">
       <router-link
         to="/main/userinfo"
         class="item"
-        tag="div">userinfo</router-link>
+        tag="div">个人中心</router-link>
     </div>
   </div>
 </template>

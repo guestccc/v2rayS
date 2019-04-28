@@ -2,6 +2,8 @@ import userinfo from './userinfo';
 import single from './single';
 import singles from './singles';
 import many from './many';
+import account from './account';
+import client from './client';
 
 const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
 const NotFind = () => import('@/views/error/notFind.vue');
@@ -18,6 +20,8 @@ export default {
     single,
     singles,
     many,
+    account,
+    client,
     {
       path: '*',
       component: NotFind,

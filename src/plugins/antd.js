@@ -1,16 +1,20 @@
 import Vue from 'vue';
 import {
-  Layout,
   Input,
   Button,
   Icon,
   Menu,
   Breadcrumb,
+  Tabs,
+  Card,
+  Divider,
 } from 'ant-design-vue';
 
-Vue.use(Layout);
 Vue.use(Input);
 Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Menu);
 Vue.use(Breadcrumb);
+Vue.use(Tabs);
+Vue.use(Card);
+Vue.use(Divider);

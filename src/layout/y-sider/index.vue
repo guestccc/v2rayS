@@ -1,6 +1,6 @@
 <template>
   <a-menu
-    :defaultSelectedKeys="defaultSelectedKeys"
+    v-model="selectedKeys"
     ref="menu"
     mode="inline"
     class="y-sider">
@@ -32,7 +32,7 @@ export default {
     return {
       path: '',
       menuList: [],
-      defaultSelectedKeys: ['/main/singles'],
+      selectedKeys: [],
     };
   },
   methods: {
@@ -48,10 +48,19 @@ export default {
     this.menuList = children;
     this.path = path;
   },
-  mounted() {
-    console.log('------------');
-    console.log(this.$refs.menu);
-    console.log('------------');
+  watch: {
+    $route: {
+      handler(v) {
+        const arr = v.path.split('/');
+        const selectedKeys = [];
+        while (arr.length - 2) {
+          selectedKeys.push(arr.join('/'));
+          arr.pop();
+        }
+        this.selectedKeys = selectedKeys;
+      },
+      immediate: true,
+    },
   },
   components: {
     SubMenu,

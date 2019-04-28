@@ -6,8 +6,6 @@
       <div class="content">
         <y-nav/>
         <y-router-view class="layout-flex"/>
-        <div class="flex">
-        </div>
       </div>
     </div>
   </div>

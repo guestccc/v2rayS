@@ -4,6 +4,8 @@ import Router from 'vue-router';
 import main from '@/router/main/index';
 import login from '@/router/login';
 
+import NotFind from '@/views/error/notFind.vue';
+
 Vue.use(Router);
 
 export default new Router({
@@ -18,6 +20,7 @@ export default new Router({
     login,
     {
       path: '*',
+      component: NotFind,
     },
   ],
 });

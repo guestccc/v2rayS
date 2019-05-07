@@ -2,6 +2,7 @@ import userinfo from './userinfo';
 import single from './single';
 import singles from './singles';
 import many from './many';
+import status from './status';
 import account from './account';
 import client from './client';
 
@@ -20,6 +21,7 @@ export default {
     single,
     singles,
     many,
+    status,
     account,
     client,
     {

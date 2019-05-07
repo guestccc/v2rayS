@@ -8,6 +8,7 @@ import {
   Tabs,
   Card,
   Divider,
+  Progress,
 } from 'ant-design-vue';
 
 Vue.use(Input);
@@ -18,3 +19,4 @@ Vue.use(Breadcrumb);
 Vue.use(Tabs);
 Vue.use(Card);
 Vue.use(Divider);
+Vue.use(Progress);

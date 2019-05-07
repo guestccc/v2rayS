@@ -21,6 +21,7 @@
       </a-card-grid>
     </a-card>
     <a-button @click="handleIo">socket</a-button>
+    <a-button @click="eventPush">push</a-button>
   </div>
 </template>
 
@@ -36,6 +37,9 @@ export default {
     };
   },
   methods: {
+    eventPush() {
+      this.socket.emit('chat', 'hahah');
+    },
     async getSysInfo() {
       const { data } = await getSysInfo();
       console.log('------------');
@@ -43,9 +47,6 @@ export default {
       console.log('------------');
     },
     handleIo() {
-      console.log('------------');
-      console.log('start');
-      console.log('------------');
       this.socket = io('http://127.0.0.1:7001/', {
         query: {
           room: 'demo',
@@ -57,11 +58,11 @@ export default {
         console.log('------------');
         console.log('connect', this.socket.id);
         console.log('------------');
-        this.socket.on(this.socket.id, (msg) => {
-          console.log('------------');
-          console.log('#receive,', msg);
-          console.log('------------');
-        });
+      });
+      this.socket.on('res', (msg) => {
+        console.log('------------');
+        console.log('#receive,', msg);
+        console.log('------------');
       });
       this.socket.on('disconnect', (msg) => {
         console.log('------------');

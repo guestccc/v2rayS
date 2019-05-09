@@ -53,6 +53,9 @@ export default {
           this.$refs.ramPro.handleData(data.ram);
 
           this.$refs.cpuMini.handleData(data.ram);
+          console.log('--------------------------');
+          console.log(data);
+          console.log('--------------------------');
           return;
         }
         console.log('--------------------------');

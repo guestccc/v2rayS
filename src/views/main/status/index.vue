@@ -1,17 +1,32 @@
 <template>
   <div class="status">
-    <ram ref="ram"/>
+    <div class="nav">
+      <ram-mini
+        :activa="type === 'ram'"
+        ref="ramMini"/>
+      <cpu-mini
+        :activa="type === 'cpu'"
+        ref="cpuMini"/>
+    </div>
+    <div class="content">
+      <ram-pro ref="ramPro"/>
+      <!-- <cpu-pro ref="cpuPir"/> -->
+    </div>
   </div>
 </template>
 
 <script>
 import io from 'socket.io-client';
 
-import Ram from './Ram.vue';
+import RamMini from './Ram/mini.vue';
+import RamPro from './Ram/pro.vue';
+import CpuMini from './Cpu/mini.vue';
+// import CpuPro from './Cpu/pro.vue';
 
 export default {
   data() {
     return {
+      type: 'ram',
       socketVps: null,
     };
   },
@@ -34,7 +49,10 @@ export default {
       });
       this.socketVps.on('res', ({ type, data }) => {
         if (type === 'vps') {
-          this.$refs.ram.handleData(data.ram);
+          this.$refs.ramMini.handleData(data.ram);
+          this.$refs.ramPro.handleData(data.ram);
+
+          this.$refs.cpuMini.handleData(data.ram);
           return;
         }
         console.log('--------------------------');
@@ -55,10 +73,27 @@ export default {
     this.socketVps.close();
   },
   components: {
-    Ram,
+    RamMini,
+    RamPro,
+    CpuMini,
+    // CpuPro,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.status {
+  display: flex;
+  .nav {
+    width: 220px;
+    .g2-mini {
+      & + .g2-mini {
+        margin-top: 5px;
+      }
+    }
+  }
+  .content {
+    flex: 1;
+  }
+}
 </style>

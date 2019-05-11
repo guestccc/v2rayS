@@ -3,7 +3,7 @@ import single from './single';
 import singles from './singles';
 import many from './many';
 import status from './status';
-import account from './account';
+import v2ray from './v2ray';
 import client from './client';
 
 const Layout = () => import(/* webpackChunkName: "main" */'@/layout/index.vue');
@@ -22,7 +22,7 @@ export default {
     singles,
     many,
     status,
-    account,
+    v2ray,
     client,
     {
       path: '*',

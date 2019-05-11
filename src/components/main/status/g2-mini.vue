@@ -1,6 +1,7 @@
 <template>
   <div
-    :class="{ 'activa': activa }"
+    @click="eventG2Mini"
+    :class="{ 'activa': acivaBool }"
     class="g2-mini">
     <div class="g2-mini_left">
       <slot name="left"/>
@@ -14,9 +15,28 @@
 <script>
 export default {
   props: {
+    name: {
+      type: String,
+      default: '',
+    },
     activa: {
       type: Boolean,
       default: false,
+    },
+  },
+  data() {
+    return {
+      acivaBool: false,
+    };
+  },
+  methods: {
+    eventG2Mini() {
+      const self = this.$parent.$parent;
+      self.$emit('change', this.name);
+      this.$emit('click', this.name);
+    },
+    handleMsg(v) {
+      this.acivaBool = v === this.name;
     },
   },
 };

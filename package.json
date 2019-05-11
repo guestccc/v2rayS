@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "开发中...",
   "scripts": {
-    "start": "yarn serve",
+    "start": "npm run dev",
+    "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "serve:pro": "vue-cli-service serve --mode production",
     "serve:test": "vue-cli-service serve",

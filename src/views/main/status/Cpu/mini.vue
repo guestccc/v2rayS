@@ -1,5 +1,7 @@
 <template>
-  <g2-mini>
+  <g2-mini
+    :name="name"
+    class="cpu-mini">
     <div
       ref="chartMini"
       slot="left"></div>
@@ -16,6 +18,16 @@ import G2 from '@antv/g2';
 import G2Mini from '@/components/main/status/g2-mini.vue';
 
 export default {
+  props: {
+    name: {
+      type: String,
+      default: '',
+    },
+    activa: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       g2Chart: null,

@@ -1,13 +1,18 @@
 <template>
   <div class="status">
-    <div class="nav">
+    <g2-mini-box
+      :activaName="type"
+      @change="handleChange">
       <ram-mini
-        :activa="type === 'ram'"
+        name="ram"
         ref="ramMini"/>
       <cpu-mini
-        :activa="type === 'cpu'"
+        name="cpu"
         ref="cpuMini"/>
-    </div>
+      <network-mini
+        name="network"
+        ref="networkMini"/>
+    </g2-mini-box>
     <div class="content">
       <ram-pro ref="ramPro"/>
       <!-- <cpu-pro ref="cpuPir"/> -->
@@ -18,10 +23,12 @@
 <script>
 import io from 'socket.io-client';
 
+import G2MiniBox from '@/components/main/status/g2-mini-box.vue';
 import RamMini from './Ram/mini.vue';
 import RamPro from './Ram/pro.vue';
 import CpuMini from './Cpu/mini.vue';
 // import CpuPro from './Cpu/pro.vue';
+import NetworkMini from './Network/mini.vue';
 
 export default {
   data() {
@@ -53,9 +60,10 @@ export default {
           this.$refs.ramPro.handleData(data.ram);
 
           this.$refs.cpuMini.handleData(data.ram);
-          console.log('--------------------------');
-          console.log(data);
-          console.log('--------------------------');
+          this.$refs.networkMini.handleData(data.ram);
+          // console.log('--------------------------');
+          // console.log(data);
+          // console.log('--------------------------');
           return;
         }
         console.log('--------------------------');
@@ -68,6 +76,9 @@ export default {
         console.log('------------');
       });
     },
+    handleChange(v) {
+      this.type = v;
+    },
   },
   mounted() {
     this.handleSocketInit();
@@ -76,10 +87,12 @@ export default {
     this.socketVps.close();
   },
   components: {
+    G2MiniBox,
     RamMini,
     RamPro,
     CpuMini,
     // CpuPro,
+    NetworkMini,
   },
 };
 </script>

@@ -31,11 +31,9 @@
       <a-tab-pane tab="Vmess" key="2">Content of tab 2</a-tab-pane>
       <a-tab-pane tab="Shadowsocks" key="3">Content of tab 3</a-tab-pane>
     </a-tabs> -->
-    <!-- <a-table :columns="columns" :dataSource="inbounds">
-      <a slot="action" slot-scope="{}" href="javascript:;">Delete</a>
-      <p slot="expandedRowRender" slot-scope="record" style="margin: 0">{{record.description}}</p>
-    </a-table> -->
-    <a-collapse accordion>
+    <a-collapse
+      v-if="inbounds.length"
+      accordion>
       <a-collapse-panel
         v-for="item in inbounds"
         :key="item.port">
@@ -55,9 +53,6 @@
                 cancelText="No">
                 <a @click.stop="">Delete</a>
               </a-popconfirm>
-              <!-- <a-button
-                @click.stop="eventDel(item.port)"
-                type="danger">删除</a-button> -->
             </div>
           </div>
         </template>

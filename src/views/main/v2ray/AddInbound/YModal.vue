@@ -3,7 +3,7 @@
     title="请选择协议"
     :visible="visible"
     :footer="null"
-    @cancel="setVisible()"
+    @cancel="setVisibleModal()"
     class="add-inbound__modal">
     <a-card>
       <a-card-grid
@@ -17,13 +17,9 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
-  props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data() {
     return {
       inboundList: [
@@ -32,13 +28,21 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapState({
+      visible: state => state.v2ray.visibleModal,
+    }),
+  },
   methods: {
+    ...mapMutations('v2ray', [
+      'setVisibleModal',
+      'setVisibleDrawers',
+      'setProtocol',
+    ]),
     eventClick(v) {
-      this.$emit('change', v);
-      this.setVisible();
-    },
-    setVisible(v = false) {
-      this.$emit('update:visible', v);
+      this.setProtocol(v);
+      this.setVisibleModal();
+      this.setVisibleDrawers(1);
     },
   },
 };

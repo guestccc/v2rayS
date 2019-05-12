@@ -1,26 +1,20 @@
 <template>
   <div class="add-inbound">
-    <a-button
-      @click="visibleModal = true">添加账号</a-button>
-    <y-modal
-      :visible.sync="visibleModal"
-      @change="handleChange"/>
+    <a-button @click="setVisibleModal(1)">添加账号</a-button>
+    <y-modal/>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 import YModal from './YModal.vue';
 
 export default {
-  data() {
-    return {
-      visibleModal: false,
-    };
-  },
   methods: {
-    handleChange(v) {
-      this.$emit('change', v);
-    },
+    ...mapMutations('v2ray', [
+      'setVisibleModal',
+    ]),
   },
   components: {
     YModal,

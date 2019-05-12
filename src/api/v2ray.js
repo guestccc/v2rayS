@@ -4,8 +4,12 @@ export const getV2ray = () => ajax({
   url: 'v2ray',
 });
 
-export const addV2ray = data => ajax({
-  url: 'v2ray',
+export const getV2rayInbound = () => ajax({
+  url: 'v2ray/inbound',
+});
+
+export const addV2rayInbound = data => ajax({
+  url: 'v2ray/inbound',
   method: 'post',
   data,
 });

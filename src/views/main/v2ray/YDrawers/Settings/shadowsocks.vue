@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -80,15 +82,20 @@ export default {
           value: 'tcp,udp',
         },
       ],
-      settings: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
-        email: '',
-        method: '',
-        password: '',
-        level: 0,
-        // ota: false, // 是否强制 OTA，如果不指定此项，则自动判断。强制开启 OTA 后，V2Ray 会拒绝未启用 OTA 的连接。反之亦然。
-        network: '', // "tcp" | "udp" | "tcp,udp"
-      },
+      // settings: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
+      //   email: '',
+      //   method: '',
+      //   password: '',
+      //   level: 0,
+      //   // ota: false, // 是否强制 OTA，如果不指定此项，则自动判断。强制开启 OTA 后，V2Ray 会拒绝未启用 OTA 的连接。反之亦然。
+      //   network: '', // "tcp" | "udp" | "tcp,udp"
+      // },
     };
+  },
+  computed: {
+    ...mapState({
+      settings: state => state.v2ray.settings,
+    }),
   },
   methods: {
     eventRandomPwd() {

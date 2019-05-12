@@ -6,20 +6,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Shadowsocks from './shadowsocks.vue';
 import Vmess from './vmess.vue';
 
 export default {
-  props: {
-    classify: {
-      type: String,
-      default: '',
-    },
-  },
   computed: {
+    ...mapState({
+      protocol: state => state.v2ray.protocol,
+    }),
     xxx() {
       let res = null;
-      switch (this.classify) {
+      switch (this.protocol) {
         case 'Shadowsocks':
           res = Shadowsocks;
           break;
@@ -30,11 +28,6 @@ export default {
           break;
       }
       return res;
-    },
-  },
-  methods: {
-    getSettings() {
-      return this.$refs.settings.settings;
     },
   },
 };

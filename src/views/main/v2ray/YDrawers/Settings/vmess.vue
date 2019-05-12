@@ -34,27 +34,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
-  data() {
-    return {
-      settings: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
-        clients: [],
-        default: {
-          // level: 0,
-          // alterId: 4,
-        },
-        detour: {
-          // to: 'tag_to_detour',
-        },
-        disableInsecureEncryption: false,
-      },
-      client: {
-        id: '',
-        level: 0,
-        alterId: 4,
-        email: '',
-      },
-    };
+  computed: {
+    ...mapState({
+      settings: state => state.v2ray.settings,
+    }),
   },
   methods: {
     eventRandomUuid(obj) {

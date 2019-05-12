@@ -29,14 +29,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { delV2ray } from '@/api/v2ray';
 
 export default {
   props: {
-    inbounds: {
-      type: Array,
-      default: () => [],
-    },
+    // inbounds: {
+    //   type: Array,
+    //   default: () => [],
+    // },
+  },
+  computed: {
+    ...mapState({
+      inbounds: state => state.v2ray.inbounds,
+    }),
   },
   methods: {
     eventEdit(v) {
@@ -45,8 +51,11 @@ export default {
     async networkDelV2ray(port) {
       await delV2ray(port);
       this.$message.success('删除成功');
-      this.$emit('update');
+      this.$store.dispatch('v2ray/getV2rayInbound');
     },
+  },
+  created() {
+    this.$store.dispatch('v2ray/getV2rayInbound');
   },
 };
 </script>

@@ -17,6 +17,7 @@ import {
   Table,
   Collapse,
   Popconfirm,
+  Tooltip,
 
   Message,
 } from 'ant-design-vue';
@@ -38,5 +39,6 @@ Vue.use(Table);
 Vue.use(Select);
 Vue.use(Collapse);
 Vue.use(Popconfirm);
+Vue.use(Tooltip);
 
 Vue.prototype.$message = Message;

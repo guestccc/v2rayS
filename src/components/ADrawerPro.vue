@@ -3,7 +3,7 @@
     @close="handleClose"
     :visible="visible"
     :width="width"
-    title="Shadowsocks"
+    :title="title"
     placement="right">
     <slot/>
     <div
@@ -40,6 +40,10 @@ export default {
     visible: {
       type: Boolean,
       default: false,
+    },
+    title: {
+      type: String,
+      default: 'title',
     },
     width: {
       type: Number,

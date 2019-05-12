@@ -1,39 +1,29 @@
 <template>
   <div class="add-inbound">
-    <add-button @click="handleClick"/>
-    <drawer-shadowsocks
-      :visible.sync="visibleShadowsocks"
-      @success="handleSuccess"/>
+    <a-button
+      @click="visibleModal = true">添加账号</a-button>
+    <y-modal
+      :visible.sync="visibleModal"
+      @change="handleChange"/>
   </div>
 </template>
 
 <script>
-import AddButton from './button.vue';
-import DrawerShadowsocks from './Drawer/shadowsocks.vue';
+import YModal from './YModal.vue';
 
 export default {
   data() {
     return {
-      visibleShadowsocks: false,
+      visibleModal: false,
     };
   },
   methods: {
-    handleClick(v) {
-      switch (v) {
-        case 'Shadowsocks':
-          this.visibleShadowsocks = true;
-          break;
-        default:
-          break;
-      }
-    },
-    handleSuccess() {
-      this.$emit('success');
+    handleChange(v) {
+      this.$emit('change', v);
     },
   },
   components: {
-    AddButton,
-    DrawerShadowsocks,
+    YModal,
   },
 };
 </script>

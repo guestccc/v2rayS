@@ -1,36 +1,12 @@
 <template>
   <div class="account">
-    <add-inbound @success="networkGetV2ray"/>
-    <!-- <a-tabs>
-      <a-tab-pane tab="全部" key="1">
-        <a-card title="Vmess">
-          <div slot="extra">
-            extra
-          </div>
-          <div class="card-content">
-            content
-          </div>
-        </a-card>
-        <a-card title="Vmess">
-          <div slot="extra">
-            extra
-          </div>
-          <div class="card-content">
-            content
-          </div>
-        </a-card>
-        <a-card title="Vmess">
-          <div slot="extra">
-            extra
-          </div>
-          <div class="card-content">
-            content
-          </div>
-        </a-card>
-      </a-tab-pane>
-      <a-tab-pane tab="Vmess" key="2">Content of tab 2</a-tab-pane>
-      <a-tab-pane tab="Shadowsocks" key="3">Content of tab 3</a-tab-pane>
-    </a-tabs> -->
+    <div class="btns">
+      <add-inbound @change="handleChange"/>
+    </div>
+    <y-drawers
+      :classify="classify"
+      :visible.sync="visibleDrawers"
+      @success="networkGetV2ray"/>
     <a-collapse
       v-if="inbounds.length"
       accordion>
@@ -44,14 +20,19 @@
               {{ item.listen }}
               {{ item.port }}
             </div>
-            <div class="right">
+            <div
+              @click.stop=""
+              class="right">
+              <a-icon
+                @click="eventEdit(item)"
+                type="edit"/>
               <a-popconfirm
                 @confirm="networkDelV2ray(item.port)"
                 title="Are you sure？"
                 placement="bottomRight"
                 okText="Yes"
                 cancelText="No">
-                <a @click.stop="">Delete</a>
+                <a-icon type="delete"/>
               </a-popconfirm>
             </div>
           </div>
@@ -66,33 +47,25 @@
 
 <script>
 import AddInbound from './AddInbound/index.vue';
+import YDrawers from './YDrawers/index.vue';
 import { getV2ray, delV2ray } from '@/api/v2ray';
 
 export default {
   data() {
     return {
+      visibleDrawers: false,
+      classify: '',
       config: {},
       inbounds: [],
-      columns: [
-        {
-          title: '监听 IP',
-          dataIndex: 'listen',
-          key: 'listen',
-        },
-        {
-          title: '端口',
-          dataIndex: 'port',
-          key: 'port',
-        },
-        {
-          title: '协议',
-          dataIndex: 'protocol',
-          key: 'protocol',
-        },
-      ],
     };
   },
   methods: {
+    eventEdit(v) {
+      this.visibleDrawers = true;
+      console.log('--------------------------');
+      console.log(v);
+      console.log('--------------------------');
+    },
     eventDel() {},
     async networkGetV2ray() {
       const { data } = await getV2ray();
@@ -104,12 +77,17 @@ export default {
       this.networkGetV2ray();
       this.$message.success('删除成功');
     },
+    handleChange(v) {
+      this.visibleDrawers = true;
+      this.classify = v;
+    },
   },
   created() {
     this.networkGetV2ray();
   },
   components: {
     AddInbound,
+    YDrawers,
   },
 };
 </script>

@@ -28,6 +28,24 @@ import ADrawerPro from '@/components/ADrawerPro.vue';
 import YSettings from './Settings/index.vue';
 import { addV2ray } from '@/api/v2ray';
 
+const form = {
+  protocol: '',
+  listen: '0.0.0.0',
+  port: '',
+  settings: {},
+  streamSettings: {}, // https://www.v2ray.com/chapter_02/05_transport.html#perproxy
+  tag: '', // 当其不为空时，其值必须在所有tag中唯一
+  sniffing: { // https://www.v2ray.com/chapter_02/01_overview.html#sniffingobject
+    // enabled: false,
+    // destOverride: ['http', 'tls'],
+  },
+  allocate: { // https://www.v2ray.com/chapter_02/01_overview.html#allocateobject
+    // strategy: 'always',
+    // refresh: 5,
+    // concurrency: 3,
+  },
+};
+
 export default {
   props: {
     visible: {
@@ -41,23 +59,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        protocol: '',
-        listen: '0.0.0.0',
-        port: '',
-        settings: {},
-        streamSettings: {}, // https://www.v2ray.com/chapter_02/05_transport.html#perproxy
-        tag: '', // 当其不为空时，其值必须在所有tag中唯一
-        sniffing: { // https://www.v2ray.com/chapter_02/01_overview.html#sniffingobject
-          // enabled: false,
-          // destOverride: ['http', 'tls'],
-        },
-        allocate: { // https://www.v2ray.com/chapter_02/01_overview.html#allocateobject
-          // strategy: 'always',
-          // refresh: 5,
-          // concurrency: 3,
-        },
-      },
+      form: { ...form },
     };
   },
   computed: {
@@ -87,6 +89,7 @@ export default {
       this.networkAddV2ray();
     },
     handleClose() {
+      this.form = { ...form };
       this.$emit('update:visible', false);
     },
   },

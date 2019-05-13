@@ -42,7 +42,9 @@ export default {
   },
   methods: {
     eventEdit(v) {
-      this.$emit('edit', v);
+      console.log('--------------------------');
+      console.log(v);
+      console.log('--------------------------');
     },
     async networkDelV2ray(port) {
       await delV2ray(port);

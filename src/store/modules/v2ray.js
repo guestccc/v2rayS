@@ -80,6 +80,7 @@ const mutations = {
     state.visibleDrawers = !!data;
     if (data) return;
     state.inbound = { ...inbound };
+    state.protocol = '';
     state.settings = null;
   },
 };

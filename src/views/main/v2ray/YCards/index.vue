@@ -9,6 +9,8 @@
           {{ item.protocol }}
         </div>
         <div class="right">
+          <a-icon type="qrcode"/>
+          <a-icon type="link"/>
           <a-icon
             @click="eventEdit(item)"
             type="edit"/>
@@ -33,12 +35,6 @@ import { mapState } from 'vuex';
 import { delV2ray } from '@/api/v2ray';
 
 export default {
-  props: {
-    // inbounds: {
-    //   type: Array,
-    //   default: () => [],
-    // },
-  },
   computed: {
     ...mapState({
       inbounds: state => state.v2ray.inbounds,

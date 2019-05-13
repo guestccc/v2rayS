@@ -10,7 +10,7 @@
       <a-form-item label="监听 IP">
         <a-input v-model="inbound.listen"/>
       </a-form-item>
-      <a-form-item label="端口123">
+      <a-form-item label="端口">
         <a-input-number
           v-model="inbound.port"
           :mix="1"

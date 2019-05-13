@@ -86,7 +86,11 @@ const mutations = {
 
 const actions = {
   async getV2rayInbound({ commit }) {
-    const { data } = await getV2rayInbound();
+    const { data } = await getV2rayInbound().catch((err) => {
+      console.log('------------');
+      console.log(err.response);
+      console.log('------------');
+    });
     commit('setInbounds', data);
   },
   async addV2rayInbound({ state, commit, dispatch }) {

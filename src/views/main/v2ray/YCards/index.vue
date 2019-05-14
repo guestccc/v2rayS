@@ -1,38 +1,25 @@
-<template>
-  <div class="y-cards">
-    <a-card
-      v-for="item in inbounds"
-      :key="item.port">
-      <template
-        slot="title">
-        <div class="left">
-          {{ item.protocol }}
-        </div>
-        <div class="right">
-          <a-icon type="qrcode"/>
-          <a-icon type="link"/>
-          <a-icon
-            @click="eventEdit(item)"
-            type="edit"/>
-          <a-popconfirm
-            @confirm="networkDelV2ray(item.port)"
-            title="确定要删除吗？"
-            okText="Yes"
-            cancelText="No"
-            placement="topRight">
-            <a-icon type="delete"/>
-          </a-popconfirm>
-        </div>
-      </template>
-      {{ item.listen }}
-      {{ item.port }}
-    </a-card>
-  </div>
-</template>
-
 <script>
+// <template>
+//   <div class="y-cards">
+//     <a-card
+//       v-for="item in inbounds"
+//       :key="item.port">
+//       <template
+//         slot="title">
+//         <y-title :data="item"/>
+//       </template>
+//       {{ item.listen }}
+//       {{ item.port }}
+//       <y-settings
+//         :settings="item.settings"
+//         :protocol="item.protocol"/>
+//     </a-card>
+//   </div>
+// </template>
 import { mapState } from 'vuex';
-import { delV2ray } from '@/api/v2ray';
+
+import YTitle from './YTitle/index.vue';
+import YSettings from './Settings/index.vue';
 
 export default {
   computed: {
@@ -40,18 +27,33 @@ export default {
       inbounds: state => state.v2ray.inbounds,
     }),
   },
-  methods: {
-    eventEdit(v) {
-      this.$emit('edit', v);
-    },
-    async networkDelV2ray(port) {
-      await delV2ray(port);
-      this.$message.success('删除成功');
-      this.$store.dispatch('v2ray/getV2rayInbound');
-    },
+  render() {
+    const { inbounds } = this;
+    const cards = inbounds.map((item) => {
+      const { protocol, settings } = item;
+      return (
+        <a-card>
+          <template slot="title">
+            <y-title data={item}/>
+          </template>
+          <y-settings
+            settings={settings}
+            protocol={protocol}/>
+        </a-card>
+      );
+    });
+    return (
+      <div class="y-cards">
+        { cards }
+      </div>
+    );
   },
   created() {
     this.$store.dispatch('v2ray/getV2rayInbound');
+  },
+  components: {
+    YTitle,
+    YSettings,
   },
 };
 </script>
@@ -60,23 +62,7 @@ export default {
 .y-cards {
   .ant-card {
     display: inline-block;
-    width: 500px;
-    /deep/ .ant-card-head-title {
-      display: flex;
-      justify-content: space-between;
-      .right {
-        .anticon {
-          font-size: 20px;
-          cursor: pointer;
-          &:hover {
-            color: #1890ff;
-          }
-          & + .anticon {
-            margin-left: 10px;
-          }
-        }
-      }
-    }
+    width: 400px;
   }
 }
 </style>

@@ -17,7 +17,9 @@
           :max="99999"/>
       </a-form-item>
     </a-form>
-    <y-settings ref="settings"/>
+    <component
+      :is="protocol.components.drawer.settings"
+      class="y-settings"/>
   </a-drawer-pro>
 </template>
 
@@ -25,7 +27,6 @@
 import { mapState, mapMutations } from 'vuex';
 
 import ADrawerPro from '@/components/ADrawerPro.vue';
-import YSettings from './Settings/index.vue';
 
 export default {
   computed: {
@@ -45,7 +46,6 @@ export default {
   },
   components: {
     ADrawerPro,
-    YSettings,
   },
 };
 </script>

@@ -4,16 +4,37 @@ import Vue from 'vue';
 
 import { getV2rayInbound, addV2rayInbound } from '@/api/v2ray';
 
+const DrawerSettingsShadowsocks = () => import('@/views/main/v2ray/YDrawers/Settings/shadowsocks.vue');
+const DrawerSettingsVmess = () => import('@/views/main/v2ray/YDrawers/Settings/vmess.vue');
+
 const protocols = [
   {
     label: 'Shadowsocks',
     value: 'shadowsocks',
+    components: {
+      drawer: {
+        settings: DrawerSettingsShadowsocks,
+      },
+    },
   },
   {
     label: 'VMess',
     value: 'vmess',
+    components: {
+      drawer: {
+        settings: DrawerSettingsVmess,
+      },
+    },
   },
 ];
+
+const protocol = {
+  label: '',
+  value: '',
+  components: {
+    drawer: {},
+  },
+};
 
 const inbound = {
   protocol: '',
@@ -66,7 +87,9 @@ const state = {
   protocols,
   visibleModal: false,
   visibleDrawers: false,
-  protocol: {},
+  protocol: {
+    ...protocol,
+  },
   inbounds: [],
   inbound: {
     ...inbound,
@@ -92,7 +115,7 @@ const mutations = {
     state.visibleDrawers = !!data;
     if (data) return;
     state.inbound = { ...inbound };
-    state.protocol = {};
+    state.protocol = protocol;
     state.settings = null;
   },
 };

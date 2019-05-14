@@ -1,7 +1,7 @@
 <template>
   <a-drawer-pro
     :visible="visible"
-    :title="protocol"
+    :title="protocol.label"
     :width="720"
     @ok="handleOk"
     @close="setVisibleDrawers()"

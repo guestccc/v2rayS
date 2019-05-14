@@ -16,18 +16,14 @@ export default {
       protocol: state => state.v2ray.protocol,
     }),
     xxx() {
-      let res = null;
-      switch (this.protocol) {
-        case 'Shadowsocks':
-          res = Shadowsocks;
-          break;
-        case 'VMess':
-          res = Vmess;
-          break;
+      switch (this.protocol.value) {
+        case 'shadowsocks':
+          return Shadowsocks;
+        case 'vmess':
+          return Vmess;
         default:
-          break;
+          return null;
       }
-      return res;
     },
   },
 };

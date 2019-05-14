@@ -4,6 +4,17 @@ import Vue from 'vue';
 
 import { getV2rayInbound, addV2rayInbound } from '@/api/v2ray';
 
+const protocols = [
+  {
+    label: 'Shadowsocks',
+    value: 'shadowsocks',
+  },
+  {
+    label: 'VMess',
+    value: 'vmess',
+  },
+];
+
 const inbound = {
   protocol: '',
   listen: '0.0.0.0',
@@ -23,7 +34,7 @@ const inbound = {
 };
 
 const settingsObj = {
-  Shadowsocks: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
+  shadowsocks: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
     email: '',
     method: '',
     password: '',
@@ -31,7 +42,7 @@ const settingsObj = {
     // ota: false, // 是否强制 OTA，如果不指定此项，则自动判断。强制开启 OTA 后，V2Ray 会拒绝未启用 OTA 的连接。反之亦然。
     network: '', // "tcp" | "udp" | "tcp,udp"
   },
-  VMess: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
+  vmess: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
     clients: [
       {
         id: '',
@@ -52,9 +63,10 @@ const settingsObj = {
 };
 
 const state = {
+  protocols,
   visibleModal: false,
   visibleDrawers: false,
-  protocol: '',
+  protocol: {},
   inbounds: [],
   inbound: {
     ...inbound,
@@ -68,7 +80,7 @@ const getters = {
 const mutations = {
   setProtocol(state, data) {
     state.protocol = data;
-    state.settings = { ...settingsObj[data] };
+    state.settings = { ...settingsObj[data.value] };
   },
   setInbounds(state, data) {
     state.inbounds = data;
@@ -80,7 +92,7 @@ const mutations = {
     state.visibleDrawers = !!data;
     if (data) return;
     state.inbound = { ...inbound };
-    state.protocol = '';
+    state.protocol = {};
     state.settings = null;
   },
 };
@@ -96,7 +108,7 @@ const actions = {
   },
   async addV2rayInbound({ state, commit, dispatch }) {
     const body = { ...state.inbound };
-    body.protocol = state.protocol;
+    body.protocol = state.protocol.value;
     body.settings = state.settings;
     await addV2rayInbound(body);
     commit('setVisibleDrawers');

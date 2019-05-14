@@ -7,10 +7,10 @@
     class="add-inbound__modal">
     <a-card>
       <a-card-grid
-        v-for="item in inboundList"
-        :key="item"
+        v-for="item in protocols"
+        :key="item.label"
         @click="eventClick(item)">
-        {{ item }}
+        {{ item.label }}
       </a-card-grid>
     </a-card>
   </a-modal>
@@ -20,16 +20,9 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-  data() {
-    return {
-      inboundList: [
-        'Shadowsocks',
-        'VMess',
-      ],
-    };
-  },
   computed: {
     ...mapState({
+      protocols: state => state.v2ray.protocols,
       visible: state => state.v2ray.visibleModal,
     }),
   },

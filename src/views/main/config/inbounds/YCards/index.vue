@@ -61,8 +61,8 @@ export default {
 <style lang="scss" scoped>
 .y-cards {
   .ant-card {
-    display: inline-block;
-    width: 400px;
+    // display: inline-block;
+    width: 600px;
   }
 }
 </style>

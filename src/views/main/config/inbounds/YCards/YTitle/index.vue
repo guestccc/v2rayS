@@ -1,27 +1,7 @@
-<template>
-  <div class="y-title">
-    <div class="left">
-      {{ data.protocol }}
-    </div>
-    <div class="right">
-      <a-icon type="qrcode"/>
-      <a-icon type="link"/>
-      <a-icon
-        @click="eventEdit"
-        type="edit"/>
-      <a-popconfirm
-        @confirm="networkDelV2ray"
-        title="确定要删除吗？"
-        okText="Yes"
-        cancelText="No"
-        placement="topRight">
-        <a-icon type="delete"/>
-      </a-popconfirm>
-    </div>
-  </div>
-</template>
-
 <script>
+import Shadowsocks from './Shadowsocks.vue';
+import Vmess from './Vmess.vue';
+
 import { delV2ray } from '@/api/v2ray';
 
 export default {
@@ -30,6 +10,41 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+  data() {
+    return {
+      rights: {
+        shadowsocks: Shadowsocks,
+        vmess: Vmess,
+      },
+    };
+  },
+  render() {
+    const {
+      data, rights, eventEdit, networkDelV2ray,
+    } = this;
+    const Comp = rights[data.protocol];
+    return (
+      <div class="y-title">
+        <div class="left">
+          { data.protocol }
+        </div>
+        <div class="right">
+          <Comp/>
+          <a-icon
+            onClick={eventEdit}
+            type="edit"/>
+          <a-popconfirm
+            onConfirm={networkDelV2ray}
+            title="确定要删除吗？"
+            okText="Yes"
+            cancelText="No"
+            placement="topRight">
+            <a-icon type="delete"/>
+          </a-popconfirm>
+        </div>
+      </div>
+    );
   },
   methods: {
     eventEdit() {

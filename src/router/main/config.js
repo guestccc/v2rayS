@@ -1,6 +1,7 @@
 import MainLayout from '@/components/main-layout.vue';
 
-const Inbounds = () => import(/* webpackChunkName: "inbounds" */ '@/views/main/config/inbounds/index.vue');
+const Inbounds = () => import(/* webpackChunkName: "configInbounds" */ '@/views/main/config/inbounds/index.vue');
+const Log = () => import(/* webpackChunkName: "configLog" */ '@/views/main/config/log/index.vue');
 
 export default {
   path: 'config',
@@ -14,6 +15,13 @@ export default {
       component: Inbounds,
       meta: {
         name: 'inbounds',
+      },
+    },
+    {
+      path: 'log',
+      component: Log,
+      meta: {
+        name: 'log',
       },
     },
   ],

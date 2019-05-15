@@ -4,8 +4,8 @@ import Vue from 'vue';
 
 import { getV2rayInbound, addV2rayInbound } from '@/api/v2ray';
 
-const DrawerSettingsShadowsocks = () => import('@/views/main/v2ray/YDrawers/Settings/shadowsocks.vue');
-const DrawerSettingsVmess = () => import('@/views/main/v2ray/YDrawers/Settings/vmess.vue');
+const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/YDrawers/Settings/shadowsocks.vue');
+const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/YDrawers/Settings/vmess.vue');
 
 const protocols = [
   {

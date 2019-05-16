@@ -3,7 +3,7 @@
     :visible="visibleDrawers"
     :title="protocol.label"
     :width="720"
-    @ok="createConfigInbound()"
+    @ok="submit"
     @close="setVisibleDrawers()"
     footer>
     <a-form>
@@ -41,7 +41,7 @@ export default {
       'setVisibleDrawers',
     ]),
     ...mapActions('config', [
-      'createConfigInbound',
+      'submit',
     ]),
   },
   components: {

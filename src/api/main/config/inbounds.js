@@ -10,6 +10,12 @@ export const createConfigInbound = data => ajax({
   data,
 });
 
+export const updateConfigInbound = (port, data) => ajax({
+  url: `v2ray/inbound/${port}`,
+  method: 'put',
+  data,
+});
+
 export const deleteConfigInbound = data => ajax({
   url: `v2ray/${data}`,
   method: 'delete',

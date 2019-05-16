@@ -1,8 +1,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-// import Vue from 'vue';
+import { message } from 'ant-design-vue';
 
-import { getConfigInbound, createConfigInbound } from '@/api/main/config/inbounds';
+
+import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/api/main/config/inbounds';
 
 const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/FormInbound/Settings/shadowsocks.vue');
 const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/FormInbound/Settings/vmess.vue');
@@ -95,18 +96,21 @@ const state = {
     ...inbound,
   },
   settings: null,
-};
-
-const getters = {
-  xxx(state, data) {
-    return state.protocols.forEach(item => item.vlaue === data)[0];
+  clickInfo: {
+    port: -1,
+    type: '',
   },
 };
+
+const getters = {};
 
 const mutations = {
   setProtocol(state, data) {
     state.protocol = data;
     state.settings = { ...settingsObj[data.value] };
+    state.clickInfo = {
+      type: 'create',
+    };
   },
   setInbounds(state, data) {
     state.inbounds = data;
@@ -121,33 +125,52 @@ const mutations = {
     state.protocol = protocol;
     state.settings = null;
   },
-  clickEdit(state, inbound) {
+  clickCreate() {},
+  clickUpdate(state, inbound) {
     const { protocol, settings } = inbound;
     const obj = state.protocols.filter(item => item.value === protocol)[0];
     state.protocol = obj;
-    state.inbound = inbound;
-    state.settings = settings;
+    state.inbound = { ...inbound };
+    state.settings = { ...settings };
+    state.clickInfo = {
+      port: inbound.port,
+      type: 'update',
+    };
     state.visibleDrawers = true;
   },
 };
 
 const actions = {
-  async getConfigInbound({ commit }) {
-    const { data } = await getConfigInbound().catch((err) => {
-      console.log('------------');
-      console.log(err.response);
-      console.log('------------');
-    });
-    commit('setInbounds', data);
-  },
-  async createConfigInbound({ state, commit, dispatch }) {
+  async submit({ state, commit, dispatch }) {
     const body = { ...state.inbound };
     body.protocol = state.protocol.value;
     body.settings = state.settings;
-    await createConfigInbound(body);
+    switch (state.clickInfo.type) {
+      case 'create':
+        await dispatch('createConfigInbound', body);
+        break;
+      case 'update':
+        await dispatch('updateConfigInbound', {
+          port: state.clickInfo.port,
+          body,
+        });
+        break;
+      default:
+        break;
+    }
     commit('setVisibleDrawers');
     dispatch('getConfigInbound');
-    // Vue.$message.success('添加成功');
+    message.success('添加成功');
+  },
+  async getConfigInbound({ commit }) {
+    const { data } = await getConfigInbound();
+    commit('setInbounds', data);
+  },
+  async createConfigInbound(obj, body) {
+    await createConfigInbound(body);
+  },
+  async updateConfigInbound(obj, { port, body }) {
+    await updateConfigInbound(port, body);
   },
 };
 

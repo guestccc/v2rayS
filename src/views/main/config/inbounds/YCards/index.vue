@@ -1,21 +1,4 @@
 <script>
-// <template>
-//   <div class="y-cards">
-//     <a-card
-//       v-for="item in inbounds"
-//       :key="item.port">
-//       <template
-//         slot="title">
-//         <y-title :data="item"/>
-//       </template>
-//       {{ item.listen }}
-//       {{ item.port }}
-//       <y-settings
-//         :settings="item.settings"
-//         :protocol="item.protocol"/>
-//     </a-card>
-//   </div>
-// </template>
 import { mapState } from 'vuex';
 
 import YTitle from './YTitle/index.vue';

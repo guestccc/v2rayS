@@ -23,7 +23,7 @@ export default {
   },
   render() {
     const {
-      data, rights, clickEdit, networkDeleteConfigInbound,
+      data, rights, clickUpdate, networkDeleteConfigInbound,
     } = this;
     const Other = rights[data.protocol];
     return (
@@ -34,7 +34,7 @@ export default {
         <div class="right">
           <Other class="other"/>
           <a-icon
-            onClick={() => clickEdit(data)}
+            onClick={() => clickUpdate(data)}
             type="edit"/>
           <a-popconfirm
             onConfirm={networkDeleteConfigInbound}
@@ -50,16 +50,11 @@ export default {
   },
   methods: {
     ...mapMutations('config', [
-      'clickEdit',
+      'clickUpdate',
     ]),
     ...mapActions('config', [
       'getConfigInbound',
     ]),
-    // eventEdit() {
-    //   console.log('------------');
-    //   console.log(this.data);
-    //   console.log('------------');
-    // },
     async networkDeleteConfigInbound() {
       await deleteConfigInbound(this.data.port);
       this.$message.success('删除成功');

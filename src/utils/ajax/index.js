@@ -24,6 +24,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => response,
   (error) => {
+    if (!error.response) message.error('Network Error');
     switch (error.response.status) {
       case 200:
         console.log('不存在200');

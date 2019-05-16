@@ -1,9 +1,9 @@
 <template>
   <a-drawer-pro
-    :visible="visible"
-    :title="protocol"
+    :visible="visibleDrawers"
+    :title="protocol.label"
     :width="720"
-    @ok="handleOk"
+    @ok="submit"
     @close="setVisibleDrawers()"
     footer>
     <a-form>
@@ -17,35 +17,35 @@
           :max="99999"/>
       </a-form-item>
     </a-form>
-    <y-settings ref="settings"/>
+    <component
+      :is="protocol.components.drawer.settings"
+      class="y-settings"/>
   </a-drawer-pro>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 import ADrawerPro from '@/components/ADrawerPro.vue';
-import YSettings from './Settings/index.vue';
 
 export default {
   computed: {
-    ...mapState({
-      visible: state => state.v2ray.visibleDrawers,
-      protocol: state => state.v2ray.protocol,
-      inbound: state => state.v2ray.inbound,
-    }),
+    ...mapState('config', [
+      'visibleDrawers',
+      'protocol',
+      'inbound',
+    ]),
   },
   methods: {
-    ...mapMutations('v2ray', [
+    ...mapMutations('config', [
       'setVisibleDrawers',
     ]),
-    handleOk() {
-      this.$store.dispatch('v2ray/addV2rayInbound');
-    },
+    ...mapActions('config', [
+      'submit',
+    ]),
   },
   components: {
     ADrawerPro,
-    YSettings,
   },
 };
 </script>

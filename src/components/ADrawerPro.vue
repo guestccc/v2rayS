@@ -4,7 +4,8 @@
     :visible="visible"
     :width="width"
     :title="title"
-    placement="right">
+    placement="right"
+    class="test">
     <slot/>
     <div
       v-if="footer"
@@ -64,3 +65,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+/deep/ .ant-drawer-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+</style>

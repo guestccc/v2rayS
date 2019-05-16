@@ -39,7 +39,7 @@ import { mapState } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      settings: state => state.v2ray.settings,
+      settings: state => state.config.settings,
     }),
   },
   methods: {

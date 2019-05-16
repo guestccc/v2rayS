@@ -1,9 +1,9 @@
 <template>
   <a-drawer-pro
-    :visible="visible"
+    :visible="visibleDrawers"
     :title="protocol.label"
     :width="720"
-    @ok="handleOk"
+    @ok="createConfigInbound()"
     @close="setVisibleDrawers()"
     footer>
     <a-form>
@@ -24,25 +24,25 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapActions } from 'vuex';
 
 import ADrawerPro from '@/components/ADrawerPro.vue';
 
 export default {
   computed: {
-    ...mapState({
-      visible: state => state.config.visibleDrawers,
-      protocol: state => state.config.protocol,
-      inbound: state => state.config.inbound,
-    }),
+    ...mapState('config', [
+      'visibleDrawers',
+      'protocol',
+      'inbound',
+    ]),
   },
   methods: {
     ...mapMutations('config', [
       'setVisibleDrawers',
     ]),
-    handleOk() {
-      this.$store.dispatch('config/createConfigInbound');
-    },
+    ...mapActions('config', [
+      'createConfigInbound',
+    ]),
   },
   components: {
     ADrawerPro,

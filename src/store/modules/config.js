@@ -98,6 +98,9 @@ const state = {
 };
 
 const getters = {
+  xxx(state, data) {
+    return state.protocols.forEach(item => item.vlaue === data)[0];
+  },
 };
 
 const mutations = {
@@ -117,6 +120,14 @@ const mutations = {
     state.inbound = { ...inbound };
     state.protocol = protocol;
     state.settings = null;
+  },
+  clickEdit(state, inbound) {
+    const { protocol, settings } = inbound;
+    const obj = state.protocols.filter(item => item.value === protocol)[0];
+    state.protocol = obj;
+    state.inbound = inbound;
+    state.settings = settings;
+    state.visibleDrawers = true;
   },
 };
 

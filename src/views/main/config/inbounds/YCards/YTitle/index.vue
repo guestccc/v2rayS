@@ -1,4 +1,6 @@
 <script>
+import { mapMutations, mapActions } from 'vuex';
+
 import Shadowsocks from './Shadowsocks.vue';
 import Vmess from './Vmess.vue';
 
@@ -21,7 +23,7 @@ export default {
   },
   render() {
     const {
-      data, rights, eventEdit, networkdeleteConfigInbound,
+      data, rights, clickEdit, networkDeleteConfigInbound,
     } = this;
     const Other = rights[data.protocol];
     return (
@@ -32,10 +34,10 @@ export default {
         <div class="right">
           <Other class="other"/>
           <a-icon
-            onClick={eventEdit}
+            onClick={() => clickEdit(data)}
             type="edit"/>
           <a-popconfirm
-            onConfirm={networkdeleteConfigInbound}
+            onConfirm={networkDeleteConfigInbound}
             title="确定要删除吗？"
             okText="Yes"
             cancelText="No"
@@ -47,15 +49,21 @@ export default {
     );
   },
   methods: {
-    eventEdit() {
-      console.log('------------');
-      console.log(this.data);
-      console.log('------------');
-    },
-    async networkdeleteConfigInbound() {
+    ...mapMutations('config', [
+      'clickEdit',
+    ]),
+    ...mapActions('config', [
+      'getConfigInbound',
+    ]),
+    // eventEdit() {
+    //   console.log('------------');
+    //   console.log(this.data);
+    //   console.log('------------');
+    // },
+    async networkDeleteConfigInbound() {
       await deleteConfigInbound(this.data.port);
       this.$message.success('删除成功');
-      this.$store.dispatch('config/getConfigInbound');
+      this.getConfigInbound();
     },
   },
 };

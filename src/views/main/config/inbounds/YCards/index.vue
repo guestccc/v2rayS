@@ -30,7 +30,7 @@ export default {
   render() {
     const { inbounds } = this;
     const cards = inbounds.map((item) => {
-      const { protocol, settings } = item;
+      const { protocol, port, settings } = item;
       return (
         <a-card>
           <template slot="title">
@@ -39,6 +39,7 @@ export default {
           <y-settings
             settings={settings}
             protocol={protocol}/>
+          {port}
         </a-card>
       );
     });

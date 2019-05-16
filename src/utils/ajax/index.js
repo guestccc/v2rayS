@@ -1,6 +1,8 @@
 import axios from 'axios';
 import pkg from '@/../package.json';
 
+import { message } from 'ant-design-vue';
+
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
   timeout: 12000,
@@ -22,7 +24,13 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => response,
   (error) => {
-    console.log(`err${error}`);// for debug
+    switch (error.response.status) {
+      case 200:
+        console.log('不存在200');
+        break;
+      default:
+        message.error(error.response.data.msg);
+    }
     return Promise.reject(error);
   },
 );

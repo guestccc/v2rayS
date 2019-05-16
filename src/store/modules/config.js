@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-import Vue from 'vue';
+// import Vue from 'vue';
 
-import { getV2rayInbound, addV2rayInbound } from '@/api/v2ray';
+import { getConfigInbound, createConfigInbound } from '@/api/main/config/inbounds';
 
 const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/FormInbound/Settings/shadowsocks.vue');
 const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/FormInbound/Settings/vmess.vue');
@@ -121,22 +121,22 @@ const mutations = {
 };
 
 const actions = {
-  async getV2rayInbound({ commit }) {
-    const { data } = await getV2rayInbound().catch((err) => {
+  async getConfigInbound({ commit }) {
+    const { data } = await getConfigInbound().catch((err) => {
       console.log('------------');
       console.log(err.response);
       console.log('------------');
     });
     commit('setInbounds', data);
   },
-  async addV2rayInbound({ state, commit, dispatch }) {
+  async createConfigInbound({ state, commit, dispatch }) {
     const body = { ...state.inbound };
     body.protocol = state.protocol.value;
     body.settings = state.settings;
-    await addV2rayInbound(body);
+    await createConfigInbound(body);
     commit('setVisibleDrawers');
-    dispatch('getV2rayInbound');
-    Vue.$message.success('添加成功');
+    dispatch('getConfigInbound');
+    // Vue.$message.success('添加成功');
   },
 };
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="v2ray">
+  <div class="config">
     <div class="btns">
       <add-inbound/>
     </div>

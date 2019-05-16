@@ -24,7 +24,7 @@ import YSettings from './Settings/index.vue';
 export default {
   computed: {
     ...mapState({
-      inbounds: state => state.v2ray.inbounds,
+      inbounds: state => state.config.inbounds,
     }),
   },
   render() {
@@ -49,7 +49,7 @@ export default {
     );
   },
   created() {
-    this.$store.dispatch('v2ray/getV2rayInbound');
+    this.$store.dispatch('config/getConfigInbound');
   },
   components: {
     YTitle,

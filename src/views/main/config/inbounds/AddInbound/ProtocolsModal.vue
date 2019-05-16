@@ -22,12 +22,12 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   computed: {
     ...mapState({
-      protocols: state => state.v2ray.protocols,
-      visible: state => state.v2ray.visibleModal,
+      protocols: state => state.config.protocols,
+      visible: state => state.config.visibleModal,
     }),
   },
   methods: {
-    ...mapMutations('v2ray', [
+    ...mapMutations('config', [
       'setVisibleModal',
       'setVisibleDrawers',
       'setProtocol',

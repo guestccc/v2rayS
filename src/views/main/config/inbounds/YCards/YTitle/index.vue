@@ -2,7 +2,7 @@
 import Shadowsocks from './Shadowsocks.vue';
 import Vmess from './Vmess.vue';
 
-import { delV2ray } from '@/api/v2ray';
+import { deleteConfigInbound } from '@/api/main/config/inbounds';
 
 export default {
   props: {
@@ -21,21 +21,21 @@ export default {
   },
   render() {
     const {
-      data, rights, eventEdit, networkDelV2ray,
+      data, rights, eventEdit, networkdeleteConfigInbound,
     } = this;
-    const Comp = rights[data.protocol];
+    const Other = rights[data.protocol];
     return (
       <div class="y-title">
         <div class="left">
           { data.protocol }
         </div>
         <div class="right">
-          <Comp/>
+          <Other class="other"/>
           <a-icon
             onClick={eventEdit}
             type="edit"/>
           <a-popconfirm
-            onConfirm={networkDelV2ray}
+            onConfirm={networkdeleteConfigInbound}
             title="确定要删除吗？"
             okText="Yes"
             cancelText="No"
@@ -52,10 +52,10 @@ export default {
       console.log(this.data);
       console.log('------------');
     },
-    async networkDelV2ray() {
-      await delV2ray(this.data.port);
+    async networkdeleteConfigInbound() {
+      await deleteConfigInbound(this.data.port);
       this.$message.success('删除成功');
-      this.$store.dispatch('v2ray/getV2rayInbound');
+      this.$store.dispatch('config/getConfigInbound');
     },
   },
 };
@@ -67,14 +67,23 @@ export default {
   display: flex;
   justify-content: space-between;
   .right {
+    .other {
+      display: inline-block;
+      /deep/ .anticon {
+        margin-left: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover {
+          color: #1890ff;
+        }
+      }
+    }
     .anticon {
+      margin-left: 10px;
       font-size: 20px;
       cursor: pointer;
       &:hover {
         color: #1890ff;
-      }
-      & + .anticon {
-        margin-left: 10px;
       }
     }
   }

@@ -31,17 +31,17 @@ import ADrawerPro from '@/components/ADrawerPro.vue';
 export default {
   computed: {
     ...mapState({
-      visible: state => state.v2ray.visibleDrawers,
-      protocol: state => state.v2ray.protocol,
-      inbound: state => state.v2ray.inbound,
+      visible: state => state.config.visibleDrawers,
+      protocol: state => state.config.protocol,
+      inbound: state => state.config.inbound,
     }),
   },
   methods: {
-    ...mapMutations('v2ray', [
+    ...mapMutations('config', [
       'setVisibleDrawers',
     ]),
     handleOk() {
-      this.$store.dispatch('v2ray/addV2rayInbound');
+      this.$store.dispatch('config/createConfigInbound');
     },
   },
   components: {

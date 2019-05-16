@@ -1,20 +1,16 @@
 import ajax from '@/utils/ajax';
 
-export const getV2ray = () => ajax({
-  url: 'v2ray',
-});
-
-export const getV2rayInbound = () => ajax({
+export const getConfigInbound = () => ajax({
   url: 'v2ray/inbound',
 });
 
-export const addV2rayInbound = data => ajax({
+export const createConfigInbound = data => ajax({
   url: 'v2ray/inbound',
   method: 'post',
   data,
 });
 
-export const delV2ray = data => ajax({
+export const deleteConfigInbound = data => ajax({
   url: `v2ray/${data}`,
   method: 'delete',
 });

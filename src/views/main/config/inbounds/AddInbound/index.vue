@@ -12,7 +12,7 @@ import ProtocolsModal from './ProtocolsModal.vue';
 
 export default {
   methods: {
-    ...mapMutations('v2ray', [
+    ...mapMutations('config', [
       'setVisibleModal',
     ]),
   },

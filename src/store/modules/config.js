@@ -116,17 +116,17 @@ const mutations = {
   },
   setVisibleDrawers(state, data = false) {
     state.visibleDrawers = !!data;
-    if (data) return;
-    state.inbound = { ...inbound };
-    state.protocol = protocol;
-    state.settings = null;
+    // if (data) return;
+    // state.inbound = { ...inbound };
+    // state.protocol = protocol;
+    // state.settings = null;
   },
   clickEdit(state, inbound) {
     const { protocol, settings } = inbound;
     const obj = state.protocols.filter(item => item.value === protocol)[0];
     state.protocol = obj;
-    state.inbound = inbound;
-    state.settings = settings;
+    state.inbound = { ...inbound };
+    state.settings = { ...settings };
     state.visibleDrawers = true;
   },
 };

@@ -7,15 +7,21 @@
     @close="setVisibleDrawers()"
     footer>
     <a-form>
-      <a-form-item label="监听 IP">
-        <a-input v-model="inbound.listen"/>
-      </a-form-item>
-      <a-form-item label="端口">
-        <a-input-number
-          v-model="inbound.port"
-          :mix="1"
-          :max="99999"/>
-      </a-form-item>
+      <a-row :gutter="16">
+        <a-col :span="18">
+          <a-form-item label="监听 IP">
+            <a-input v-model="inbound.listen"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="6">
+          <a-form-item label="端口">
+            <a-input-number
+              v-model="inbound.port"
+              :mix="1"
+              :max="99999"/>
+          </a-form-item>
+        </a-col>
+      </a-row>
     </a-form>
     <component
       :is="protocol.components.drawer.settings"

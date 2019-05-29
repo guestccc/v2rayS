@@ -7,6 +7,7 @@ import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/ap
 
 const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/FormInbound/Settings/shadowsocks.vue');
 const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/FormInbound/Settings/vmess.vue');
+const DrawerSettingsMtproto = () => import('@/views/main/config/inbounds/FormInbound/Settings/mtproto.vue');
 
 const protocols = [
   {
@@ -24,6 +25,15 @@ const protocols = [
     components: {
       drawer: {
         settings: DrawerSettingsVmess,
+      },
+    },
+  },
+  {
+    label: 'MTProto',
+    value: 'mtproto',
+    components: {
+      drawer: {
+        settings: DrawerSettingsMtproto,
       },
     },
   },
@@ -82,6 +92,15 @@ const settingsObj = {
     },
     disableInsecureEncryption: false,
   },
+  mtproto: { // https://www.v2ray.com/chapter_02/protocols/mtproto.html
+    users: [
+      {
+        email: '',
+        level: 0,
+        secret: '',
+      },
+    ],
+  },
 };
 
 const state = {
@@ -120,10 +139,10 @@ const mutations = {
   },
   setVisibleDrawers(state, data = false) {
     state.visibleDrawers = !!data;
-    if (data) return;
-    state.inbound = { ...inbound };
-    state.protocol = protocol;
-    state.settings = null;
+    // if (data) return;
+    // state.inbound = { ...inbound };
+    // state.protocol = protocol;
+    // state.settings = null;
   },
   clickCreate() {},
   clickUpdate(state, inbound) {

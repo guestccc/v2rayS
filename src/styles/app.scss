@@ -5,3 +5,14 @@
 p {
   margin: 0;
 }
+
+/*控制整个滚动条*/
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/*滚动条中间滑动部分*/
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}

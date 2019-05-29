@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 import { message } from 'ant-design-vue';
-
+import { JSONCopy } from '@/utils';
 
 import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/api/main/config/inbounds';
 
@@ -115,10 +115,7 @@ const state = {
     ...inbound,
   },
   settings: null,
-  clickInfo: {
-    port: -1,
-    type: '',
-  },
+  clickInfo: null,
 };
 
 const getters = {};
@@ -149,8 +146,8 @@ const mutations = {
     const { protocol, settings } = inbound;
     const obj = state.protocols.filter(item => item.value === protocol)[0];
     state.protocol = obj;
-    state.inbound = { ...inbound };
-    state.settings = { ...settings };
+    state.inbound = JSONCopy(inbound);
+    state.settings = JSONCopy(settings);
     state.clickInfo = {
       port: inbound.port,
       type: 'update',

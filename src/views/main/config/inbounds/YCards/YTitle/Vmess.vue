@@ -1,6 +1,6 @@
 <template>
   <div>
     <a-icon type="qrcode"/>
-    <a-icon type="link"/>
+    <a-icon type="copy"/>
   </div>
 </template>

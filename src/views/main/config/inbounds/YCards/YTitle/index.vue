@@ -1,8 +1,9 @@
 <script>
 import { mapMutations, mapActions } from 'vuex';
 
-import Shadowsocks from './Shadowsocks.vue';
+import Shadowsocks from './ShadowsocksCopy.vue';
 import Vmess from './Vmess.vue';
+import Mtproto from './Mtproto.vue';
 
 import { deleteConfigInbound } from '@/api/main/config/inbounds';
 
@@ -18,7 +19,13 @@ export default {
       rights: {
         shadowsocks: Shadowsocks,
         vmess: Vmess,
+        mtproto: Mtproto,
       },
+    };
+  },
+  provide() {
+    return {
+      root: this, // 方法一：提供祖先组件的实例
     };
   },
   render() {

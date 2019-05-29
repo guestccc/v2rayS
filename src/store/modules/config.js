@@ -1,11 +1,12 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
-// import Vue from 'vue';
+import { Message } from 'ant-design-vue';
 
 import { getConfigInbound, createConfigInbound } from '@/api/main/config/inbounds';
 
 const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/FormInbound/Settings/shadowsocks.vue');
 const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/FormInbound/Settings/vmess.vue');
+const DrawerSettingsMtproto = () => import('@/views/main/config/inbounds/FormInbound/Settings/mtproto.vue');
 
 const protocols = [
   {
@@ -23,6 +24,15 @@ const protocols = [
     components: {
       drawer: {
         settings: DrawerSettingsVmess,
+      },
+    },
+  },
+  {
+    label: 'MTProto',
+    value: 'mtproto',
+    components: {
+      drawer: {
+        settings: DrawerSettingsMtproto,
       },
     },
   },
@@ -80,6 +90,15 @@ const settingsObj = {
       // to: 'tag_to_detour',
     },
     disableInsecureEncryption: false,
+  },
+  mtproto: { // https://www.v2ray.com/chapter_02/protocols/mtproto.html
+    users: [
+      {
+        email: '',
+        level: 0,
+        secret: '',
+      },
+    ],
   },
 };
 
@@ -147,7 +166,7 @@ const actions = {
     await createConfigInbound(body);
     commit('setVisibleDrawers');
     dispatch('getConfigInbound');
-    // Vue.$message.success('添加成功');
+    Message.success('添加成功');
   },
 };
 

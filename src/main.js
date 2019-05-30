@@ -10,7 +10,7 @@ import store from './store/index';
 // import { keepAlive } from './mixins';
 
 import './permission'; // router 拦截
-import './filtres';
+import './plugins';
 
 // Vue.mixin(keepAlive);
 

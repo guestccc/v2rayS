@@ -5,46 +5,24 @@ import { JSONCopy } from '@/utils';
 
 import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/api/main/config/inbounds';
 
-const DrawerSettingsShadowsocks = () => import('@/views/main/config/inbounds/FormInbound/Settings/shadowsocks.vue');
-const DrawerSettingsVmess = () => import('@/views/main/config/inbounds/FormInbound/Settings/vmess.vue');
-const DrawerSettingsMtproto = () => import('@/views/main/config/inbounds/FormInbound/Settings/mtproto.vue');
-
 const protocols = [
   {
     label: 'Shadowsocks',
     value: 'shadowsocks',
-    components: {
-      drawer: {
-        settings: DrawerSettingsShadowsocks,
-      },
-    },
   },
   {
     label: 'VMess',
     value: 'vmess',
-    components: {
-      drawer: {
-        settings: DrawerSettingsVmess,
-      },
-    },
   },
   {
     label: 'MTProto',
     value: 'mtproto',
-    components: {
-      drawer: {
-        settings: DrawerSettingsMtproto,
-      },
-    },
   },
 ];
 
 const protocol = {
   label: '',
   value: '',
-  components: {
-    drawer: {},
-  },
 };
 
 const inbound = {
@@ -107,6 +85,7 @@ const state = {
   protocols,
   visibleModal: false,
   visibleDrawers: false,
+  visibleQrcode: false,
   protocol: {
     ...protocol,
   },
@@ -116,6 +95,7 @@ const state = {
   },
   settings: null,
   clickInfo: null,
+  qrcodeValue: '',
 };
 
 const getters = {};
@@ -140,6 +120,10 @@ const mutations = {
     // state.inbound = { ...inbound };
     // state.protocol = protocol;
     // state.settings = null;
+  },
+  setVisibleQrcode(state, data = {}) {
+    if (data.bool) state.qrcodeValue = data.url;
+    state.visibleQrcode = !!data.bool;
   },
   clickCreate() {},
   clickUpdate(state, inbound) {

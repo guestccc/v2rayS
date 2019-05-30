@@ -23,9 +23,7 @@
         </a-col>
       </a-row>
     </a-form>
-    <component
-      :is="protocol.components.drawer.settings"
-      class="y-settings"/>
+    <settings :protocol="protocol"/>
   </a-drawer-pro>
 </template>
 
@@ -33,6 +31,7 @@
 import { mapState, mapMutations, mapActions } from 'vuex';
 
 import ADrawerPro from '@/components/ADrawerPro.vue';
+import Settings from './Settings/index.vue';
 
 export default {
   computed: {
@@ -52,6 +51,7 @@ export default {
   },
   components: {
     ADrawerPro,
+    Settings,
   },
 };
 </script>

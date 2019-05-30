@@ -1,7 +1,7 @@
 <script>
 import { mapMutations, mapActions } from 'vuex';
 
-import Shadowsocks from './ShadowsocksCopy.vue';
+import Shadowsocks from './Shadowsocks.vue';
 import Vmess from './Vmess.vue';
 import Mtproto from './Mtproto.vue';
 

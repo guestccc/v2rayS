@@ -1,9 +1,13 @@
 <script>
-import { mapState } from 'vuex';
-
 import KcpSettings from './kcpSettings.vue';
 
 export default {
+  props: {
+    streamSettings: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
       networks: [
@@ -42,54 +46,27 @@ export default {
           disabled: true,
         },
       ],
-      securitys: [
-        {
-          label: 'none',
-          value: 'none',
-        },
-        {
-          label: 'tls',
-          value: 'tls',
-        },
-      ],
     };
   },
   computed: {
-    ...mapState('config', [
-      'inbound',
-    ]),
-    streamSettings() {
-      return this.inbound.streamSettings;
-    },
     networkSettings() {
       const { networks, streamSettings } = this;
-      const { key } = networks.find(({ value }) => value === streamSettings.network);
+      const { key } = networks.find(({ value }) => value === streamSettings.network) || {};
       return <key streamSettings={streamSettings}/>;
     },
   },
   render() {
     const {
-      networks, securitys, streamSettings, networkSettings,
+      streamSettings,
+      networkSettings,
     } = this;
-    const networkOptions = networks.map(({ label, value, disabled }) => (
-      <a-select-option
-        key={value}
-        value={value}
-        disabled={disabled}>{ label }</a-select-option>
-    ));
-    const securityOptions = securitys.map(({ label, value }) => (
-      <a-select-option
-        key={value}
-        value={value}>{ label }</a-select-option>
-    ));
+
     return (
-      <a-form>
+      <a-form class="stream-settings">
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="网络连接类型">
-              <a-select v-model={streamSettings.network}>
-                { networkOptions }
-              </a-select>
+              { streamSettings.network }
             </a-form-item>
           </a-col>
         </a-row>
@@ -97,11 +74,7 @@ export default {
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="是否启入传输层加密">
-              <a-select
-                v-model={streamSettings.security}
-                disabled>
-                { securityOptions }
-              </a-select>
+              { streamSettings.security }
             </a-form-item>
           </a-col>
         </a-row>

@@ -3,17 +3,22 @@ import { mapState } from 'vuex';
 
 import YTitle from './YTitle/index.vue';
 import YSettings from './Settings/index.vue';
+import StreamSettings from './StreamSettings/index.vue';
 
 export default {
   computed: {
-    ...mapState({
-      inbounds: state => state.config.inbounds,
-    }),
+    ...mapState('config', [
+      'inbounds',
+    ]),
   },
   render() {
     const { inbounds } = this;
     const cards = inbounds.map((item) => {
-      const { protocol, port, settings } = item;
+      const {
+        protocol,
+        settings,
+        streamSettings,
+      } = item;
       return (
         <a-card>
           <template slot="title">
@@ -22,7 +27,7 @@ export default {
           <y-settings
             settings={settings}
             protocol={protocol}/>
-          {port}
+          <StreamSettings streamSettings={streamSettings}/>
         </a-card>
       );
     });
@@ -38,6 +43,7 @@ export default {
   components: {
     YTitle,
     YSettings,
+    StreamSettings,
   },
 };
 </script>

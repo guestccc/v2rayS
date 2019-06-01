@@ -60,7 +60,7 @@ const inbound = {
     quicSettings: undefined,
     sockopt: { // https://www.v2ray.com/chapter_02/05_transport.html#sockoptobject
       mark: 0,
-      tcpFastOpen: false,
+      tcpFastOpen: undefined,
       tproxy: 'off',
     },
   },
@@ -93,13 +93,13 @@ const settingsObj = {
         email: '',
       },
     ],
-    default: {
-      // level: 0,
-      // alterId: 4,
-    },
-    detour: {
-      // to: 'tag_to_detour',
-    },
+    // default: {
+    //   level: 0,
+    //   alterId: 4,
+    // },
+    // detour: {
+    //   to: 'tag_to_detour',
+    // },
     disableInsecureEncryption: false,
   },
   mtproto: { // https://www.v2ray.com/chapter_02/protocols/mtproto.html

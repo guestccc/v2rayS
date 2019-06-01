@@ -19,17 +19,24 @@ export default {
       },
     };
   },
-  render() {
-    const { rights, protocol } = this;
-    const Comp = rights[protocol.value];
-    return (
-      <Comp/>
-    );
+  computed: {
+    settings() {
+      const Comp = this.rights[this.protocol.value];
+      return <Comp/>;
+    },
   },
-  components: {
-    Vmess,
-    Shadowsocks,
-    Mtproto,
+  render() {
+    const { settings } = this;
+    return (
+      <div class="settings">{ settings }</div>
+    );
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.settings {
+  padding: 20px;
+  border: 1px solid red;
+}
+</style>

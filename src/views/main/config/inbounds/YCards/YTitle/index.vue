@@ -36,7 +36,7 @@ export default {
     return (
       <div class="y-title">
         <div class="left">
-          { data.protocol }
+          { data.protocol } - { data.port }
         </div>
         <div class="right">
           <Other class="other"/>

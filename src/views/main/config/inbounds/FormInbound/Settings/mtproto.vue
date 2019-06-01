@@ -1,23 +1,3 @@
-<template>
-  <a-form>
-    <div
-      v-for="item in settings.users"
-      :key="item.id">
-      <a-form-item :colon="false">
-        <span slot="label">
-          密钥 :
-          <a
-            @click="eventRandomSecret(item)"
-            class="attach">随机生成</a>
-        </span>
-        <a-input
-          v-model="item.secret"
-          read-only/>
-      </a-form-item>
-    </div>
-  </a-form>
-</template>
-
 <script>
 import { mapState } from 'vuex';
 
@@ -26,6 +6,49 @@ export default {
     ...mapState({
       settings: state => state.config.settings,
     }),
+    users() {
+      const { settings, eventRandomSecret } = this;
+      return settings.users.map((item, index) => (
+        <a-row
+          key={index}
+          gutter={16}>
+          <a-col span={24}>
+            <a-form-item colon={false}>
+              <span slot="label">
+                密钥 :
+                <a-button
+                  onClick={() => eventRandomSecret(item)}
+                  class="attach"
+                  type="primary"
+                  size="small"
+                  ghost>随机生成</a-button>
+              </span>
+              <a-input
+                v-model={item.secret}
+                read-only/>
+            </a-form-item>
+          </a-col>
+          <a-col span={12}>
+            <a-form-item label="邮箱">
+              <a-input v-model={item.email}/>
+            </a-form-item>
+          </a-col>
+          <a-col span={12}>
+            <a-form-item label="用户等级">
+              <a-input v-model={item.level}/>
+            </a-form-item>
+          </a-col>
+        </a-row>
+      ));
+    },
+  },
+  render() {
+    const { users } = this;
+    return (
+      <a-form>
+        { users }
+      </a-form>
+    );
   },
   methods: {
     eventRandomSecret(obj) {

@@ -6,36 +6,6 @@ export default {
       default: () => ({}),
     },
   },
-  data() {
-    return {
-      types: [
-        {
-          label: 'none',
-          value: 'none',
-        },
-        {
-          label: 'srtp（视频通话数据）',
-          value: 'srtp',
-        },
-        {
-          label: 'utp（BT 下载数据）',
-          value: 'utp',
-        },
-        {
-          label: 'wechat-video（微信视频通话的数据包）',
-          value: 'wechat-video',
-        },
-        {
-          label: 'dtls（DTLS 1.2 数据包）',
-          value: 'dtls',
-        },
-        {
-          label: 'wireguard（WireGuard 数据包）',
-          value: 'wireguard',
-        },
-      ],
-    };
-  },
   computed: {
     kcpSettings() {
       return this.streamSettings.kcpSettings;
@@ -43,69 +13,55 @@ export default {
   },
   render() {
     const {
-      types,
       kcpSettings,
     } = this;
-    const typeOptions = types.map(({ label, value }) => (
-      <a-select-option
-        key={value}
-        value={value}>{ label }</a-select-option>
-    ));
     return (
       <a-form>
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="伪装类型">
-              <a-select v-model={kcpSettings.header.type}>
-                { typeOptions }
-              </a-select>
+              { kcpSettings.header.type }
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="是否启用拥塞控制">
-              <a-switch v-model={kcpSettings.congestion}/>
+              { `${kcpSettings.congestion}` }
             </a-form-item>
           </a-col>
         </a-row>
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="上行链路容量">
-              <a-input v-model={kcpSettings.uplinkCapacity}/>
+              { kcpSettings.uplinkCapacity }
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="下行链路容量">
-              <a-input v-model={kcpSettings.downlinkCapacity}/>
+              { kcpSettings.downlinkCapacity }
             </a-form-item>
           </a-col>
         </a-row>
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="单个连接的读取缓冲区大小">
-              <a-input v-model={kcpSettings.readBufferSize}/>
+              { kcpSettings.readBufferSize }
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="单个连接的写入缓冲区大小">
-              <a-input v-model={kcpSettings.writeBufferSize}/>
+              { kcpSettings.writeBufferSize }
             </a-form-item>
           </a-col>
         </a-row>
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="最大传输单元">
-              <a-input-number
-                v-model={kcpSettings.mtu}
-                min={576}
-                max={1460}/>
+              { kcpSettings.mtu }
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="传输时间间隔(ms)">
-              <a-input-number
-                v-model={kcpSettings.tti}
-                min={10}
-                max={100}/>
+              { kcpSettings.tti }
             </a-form-item>
           </a-col>
         </a-row>

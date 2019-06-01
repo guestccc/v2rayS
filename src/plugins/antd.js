@@ -2,6 +2,7 @@ import Vue from 'vue';
 import {
   Input,
   InputNumber,
+  Switch,
   Button,
   Icon,
   Menu,
@@ -26,6 +27,7 @@ import {
 
 Vue.use(Input);
 Vue.use(InputNumber);
+Vue.use(Switch);
 Vue.use(Button);
 Vue.use(Icon);
 Vue.use(Menu);

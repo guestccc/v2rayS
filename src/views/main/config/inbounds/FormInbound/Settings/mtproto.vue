@@ -12,7 +12,7 @@
         </span>
         <a-input
           v-model="item.secret"
-          maxlength="32"/>
+          read-only/>
       </a-form-item>
     </div>
   </a-form>

@@ -31,7 +31,39 @@ const inbound = {
   port: '',
   settings: {},
   tag: '', // 当其不为空时，其值必须在所有tag中唯一
-  streamSettings: {}, // https://www.v2ray.com/chapter_02/05_transport.html#perproxy
+  streamSettings: { // https://www.v2ray.com/chapter_02/05_transport.html#perproxy
+    network: 'tcp',
+    security: 'none',
+    tlsSettings: undefined,
+    tcpSettings: { // https://www.v2ray.com/chapter_02/transport/tcp.html
+      header: {
+        type: 'none', // http
+        // request: {},
+        // response: {},
+      },
+    },
+    kcpSettings: { // https://www.v2ray.com/chapter_02/transport/mkcp.html
+      mtu: 1350,
+      tti: 50,
+      uplinkCapacity: 5, // 上行链路容量
+      downlinkCapacity: 20, // 下行链路容量
+      congestion: false, // 是否启用拥塞控制
+      readBufferSize: 2, // 读取缓冲区大小
+      writeBufferSize: 2, // 写入缓冲区大小
+      header: { // https://www.v2ray.com/chapter_02/transport/mkcp.html#headerobject
+        type: 'none', // srtp utp wechat-video dtls wireguard
+      },
+    },
+    wsSettings: undefined,
+    httpSettings: undefined,
+    dsSettings: undefined,
+    quicSettings: undefined,
+    sockopt: { // https://www.v2ray.com/chapter_02/05_transport.html#sockoptobject
+      mark: 0,
+      tcpFastOpen: false,
+      tproxy: 'off',
+    },
+  },
   sniffing: { // https://www.v2ray.com/chapter_02/01_overview.html#sniffingobject
     // enabled: false,
     // destOverride: ['http', 'tls'],

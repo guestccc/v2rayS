@@ -1,13 +1,5 @@
 <template>
   <a-form>
-    <a-form-item label="加密方式">
-      <a-select v-model="settings.method">
-        <a-select-option
-          v-for="{label, value} in methods"
-          :key="value"
-          :value="value">{{ label }}</a-select-option>
-      </a-select>
-    </a-form-item>
     <a-form-item :colon="false">
       <span slot="label">
         密码 :
@@ -17,14 +9,40 @@
       </span>
       <a-input v-model="settings.password"/>
     </a-form-item>
-    <a-form-item label="网络连接类型">
-      <a-select v-model="settings.network">
-        <a-select-option
-          v-for="{label, value} in networks"
-          :key="value"
-          :value="value">{{ label }}</a-select-option>
-      </a-select>
-    </a-form-item>
+    <a-row :gutter="16">
+      <a-col :span="12">
+        <a-form-item label="加密方式">
+          <a-select v-model="settings.method">
+            <a-select-option
+              v-for="{label, value} in methods"
+              :key="value"
+              :value="value">{{ label }}</a-select-option>
+          </a-select>
+        </a-form-item>
+      </a-col>
+      <a-col :span="12">
+        <a-form-item label="网络连接类型">
+          <a-select v-model="settings.network">
+            <a-select-option
+              v-for="{label, value} in networks"
+              :key="value"
+              :value="value">{{ label }}</a-select-option>
+          </a-select>
+        </a-form-item>
+      </a-col>
+    </a-row>
+    <a-row :gutter="16">
+      <a-col :span="12">
+        <a-form-item label="邮箱">
+          <a-input v-model="settings.email"/>
+        </a-form-item>
+      </a-col>
+      <a-col :span="12">
+        <a-form-item label="用户等级">
+          <a-input-number v-model="settings.level"/>
+        </a-form-item>
+      </a-col>
+    </a-row>
   </a-form>
 </template>
 
@@ -36,20 +54,16 @@ export default {
     return {
       methods: [
         {
-          label: 'aes-256-cfb',
-          value: 'aes-256-cfb',
-        },
-        {
-          label: 'aes-128-cfb',
-          value: 'aes-128-cfb',
-        },
-        {
-          label: 'chacha20',
-          value: 'chacha20',
+          label: 'chacha20-ietf-poly1305',
+          value: 'chacha20-ietf-poly1305',
         },
         {
           label: 'chacha20-ietf',
           value: 'chacha20-ietf',
+        },
+        {
+          label: 'chacha20',
+          value: 'chacha20',
         },
         {
           label: 'aes-256-gcm',
@@ -60,12 +74,12 @@ export default {
           value: 'aes-128-gcm',
         },
         {
-          label: 'chacha20-poly1305',
-          value: 'chacha20-poly1305',
+          label: 'aes-256-cfb',
+          value: 'aes-256-cfb',
         },
         {
-          label: 'chacha20-ietf-poly1305',
-          value: 'chacha20-ietf-poly1305',
+          label: 'aes-128-cfb',
+          value: 'aes-128-cfb',
         },
       ],
       networks: [
@@ -82,14 +96,6 @@ export default {
           value: 'tcp,udp',
         },
       ],
-      // settings: { // https://www.v2ray.com/chapter_02/protocols/shadowsocks.html
-      //   email: '',
-      //   method: '',
-      //   password: '',
-      //   level: 0,
-      //   // ota: false, // 是否强制 OTA，如果不指定此项，则自动判断。强制开启 OTA 后，V2Ray 会拒绝未启用 OTA 的连接。反之亦然。
-      //   network: '', // "tcp" | "udp" | "tcp,udp"
-      // },
     };
   },
   computed: {

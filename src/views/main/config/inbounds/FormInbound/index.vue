@@ -8,12 +8,12 @@
     footer>
     <a-form>
       <a-row :gutter="16">
-        <a-col :span="18">
+        <a-col :span="8">
           <a-form-item label="监听 IP">
             <a-input v-model="inbound.listen"/>
           </a-form-item>
         </a-col>
-        <a-col :span="6">
+        <a-col :span="8">
           <a-form-item label="端口">
             <a-input-number
               v-model="inbound.port"
@@ -21,9 +21,18 @@
               :max="99999"/>
           </a-form-item>
         </a-col>
+        <a-col :span="8">
+          <a-form-item label="标签">
+            <a-input-number
+              v-model="inbound.tag"
+              :mix="1"
+              :max="99999"/>
+          </a-form-item>
+        </a-col>
       </a-row>
     </a-form>
     <settings :protocol="protocol"/>
+    <stream-settings/>
   </a-drawer-pro>
 </template>
 
@@ -32,6 +41,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 
 import ADrawerPro from '@/components/ADrawerPro.vue';
 import Settings from './Settings/index.vue';
+import StreamSettings from './StreamSettings/index.vue';
 
 export default {
   computed: {
@@ -52,6 +62,7 @@ export default {
   components: {
     ADrawerPro,
     Settings,
+    StreamSettings,
   },
 };
 </script>

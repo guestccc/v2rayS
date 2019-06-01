@@ -3,32 +3,43 @@
     <div
       v-for="item in settings.clients"
       :key="item.id">
-      <a-form-item :colon="false">
-        <span slot="label">
-          用户 ID :
-          <a
-            @click="eventRandomUuid(item)"
-            class="attach">随机生成</a>
-        </span>
-        <a-input v-model="item.id"/>
-      </a-form-item>
-      <a-form-item :colon="false">
-        <span slot="label">
-          额外 ID :
-          <a-tooltip
-            placement="topLeft"
-            class="attach">
-            <template slot="title">
-              <span>官方推荐值 "4" (我也不知道为什么)</span>
-            </template>
-            <a-icon type="question-circle"/>
-          </a-tooltip>
-        </span>
-        <a-input-number
-          v-model="item.alterId"
-          :min="0"
-          :max="65535"/>
-      </a-form-item>
+      <a-row :gutter="16">
+        <a-col :span="16">
+          <a-form-item :colon="false">
+            <span slot="label">
+              用户 ID :
+              <a-button
+                @click="eventRandomUuid(item)"
+                class="attach"
+                type="primary"
+                size="small"
+                ghost>随机生成</a-button>
+            </span>
+            <a-input
+              v-model="item.id"
+              read-only/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="8">
+          <a-form-item :colon="false">
+            <span slot="label">
+              额外 ID :
+              <a-tooltip
+                placement="topLeft"
+                class="attach">
+                <template slot="title">
+                  <span>官方推荐值 "4" (我也不知道为什么)</span>
+                </template>
+                <a-icon type="question-circle"/>
+              </a-tooltip>
+            </span>
+            <a-input-number
+              v-model="item.alterId"
+              :min="0"
+              :max="65535"/>
+          </a-form-item>
+        </a-col>
+      </a-row>
     </div>
   </a-form>
 </template>

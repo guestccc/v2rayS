@@ -1,11 +1,10 @@
-import MainLayout from '@/components/main-layout.vue';
-
+const Config = () => import(/* webpackChunkName: "config" */ '@/views/main/config/index.vue');
 const Inbounds = () => import(/* webpackChunkName: "configInbounds" */ '@/views/main/config/inbounds/index.vue');
 const Log = () => import(/* webpackChunkName: "configLog" */ '@/views/main/config/log/index.vue');
 
 export default {
   path: 'config',
-  component: MainLayout,
+  component: Config,
   meta: {
     name: 'config',
   },

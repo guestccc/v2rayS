@@ -4,6 +4,7 @@ import { message } from 'ant-design-vue';
 import { JSONCopy } from '@/utils';
 
 import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/api/main/config/inbounds';
+import { getConfig } from '../../api/main/config';
 
 const protocols = [
   {
@@ -121,13 +122,22 @@ const state = {
   protocol: {
     ...protocol,
   },
-  inbounds: [],
   inbound: {
     ...inbound,
   },
   settings: null,
   clickInfo: null,
   qrcodeValue: '',
+  log: {},
+  api: {},
+  dns: {},
+  stats: {},
+  routing: {},
+  policy: {},
+  reverse: {},
+  inbounds: [],
+  outbounds: [],
+  transport: {},
 };
 
 const getters = {};
@@ -139,6 +149,11 @@ const mutations = {
     state.clickInfo = {
       type: 'create',
     };
+  },
+  setConfig(state, data) {
+    Object.keys(data).forEach((item) => {
+      state[item] = data[item];
+    });
   },
   setInbounds(state, data) {
     state.inbounds = data;
@@ -193,6 +208,10 @@ const actions = {
     commit('setVisibleDrawers');
     dispatch('getConfigInbound');
     message.success('添加成功');
+  },
+  async getConfig({ commit }) {
+    const { data } = await getConfig();
+    commit('setConfig', data);
   },
   async getConfigInbound({ commit }) {
     const { data } = await getConfigInbound();

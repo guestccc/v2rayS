@@ -37,9 +37,6 @@ export default {
       </div>
     );
   },
-  created() {
-    this.$store.dispatch('config/getConfigInbound');
-  },
   components: {
     YTitle,
     YSettings,

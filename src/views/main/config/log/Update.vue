@@ -31,16 +31,16 @@ export default {
           value: 'none',
         },
       ],
-      // form: {
-      //   loglevel: '',
-      //   access: '',
-      //   error: '',
-      // },
-      form: null,
       rules: {
-        loglevel: [{ required: true, message: 'Please input your note!' }],
-        access: [{ required: true, message: 'Please input your note!' }],
-        error: [{ required: true, message: 'Please input your note!' }],
+        loglevel: null,
+        access: [{
+          pattern: /^(\/[\w_.]+)+$/,
+          message: '请输入有效的路径!',
+        }],
+        error: [{
+          pattern: /^(\/[\w_.]+)+$/,
+          message: '请输入有效的路径!',
+        }],
       },
     };
   },
@@ -78,23 +78,32 @@ export default {
             <a-form-item label="日志级别">
               <a-select v-decorator={[
                 'loglevel',
-                { rules: rules.loglevel },
+                {
+                  rules: rules.loglevel,
+                  initialValue: log.loglevel,
+                },
               ]}>
                 { loglevel }
               </a-select>
             </a-form-item>
             <a-form-item label="访问日志的文件地址">
-              <a-input
-                v-decorator={[
-                  'access',
-                  { rules: rules.access },
-                ]}
-                default-value={log.access}/>
+              <a-input v-decorator={[
+                'access',
+                {
+                  validateTrigger: 'blur',
+                  rules: rules.access,
+                  initialValue: log.access,
+                },
+              ]}/>
             </a-form-item>
             <a-form-item label="错误日志的文件地址">
               <a-input v-decorator={[
                 'error',
-                { rules: rules.error },
+                {
+                  validateTrigger: 'blur',
+                  rules: rules.error,
+                  initialValue: log.error,
+                },
               ]}/>
             </a-form-item>
           </a-form>
@@ -107,7 +116,6 @@ export default {
       'setConfigLog',
     ]),
     eventOpen() {
-      // Object.assign(this.form, this.log);
       this.visible = true;
     },
     eventCancel() {
@@ -117,6 +125,7 @@ export default {
       });
     },
     eventClose() {
+      this.form.resetFields();
       this.visible = false;
     },
     async networkPutLog(body) {
@@ -127,13 +136,7 @@ export default {
     },
   },
   beforeCreate() {
-    this.form = this.$form.createForm(this, {
-      mapPropsToFields(props) {
-        console.log('------------');
-        console.log(props);
-        console.log('------------');
-      },
-    });
+    this.form = this.$form.createForm(this);
   },
   components: {
     YDrawer,

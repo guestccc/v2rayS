@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     hanldeConnectWs() {
-      this.socketVps = io(`${process.env.VUE_APP_BASE_API}/ws`, {
+      this.socketVps = io(`${process.env.VUE_APP_BASE_API_PRO}/ws`, {
         query: {
           room: 'demo',
           userId: `client_${Math.random()}`,

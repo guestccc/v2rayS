@@ -2,6 +2,7 @@
 import { mapState } from 'vuex';
 
 import Update from './Update.vue';
+import Error from './Error.vue';
 
 export default {
   computed: {
@@ -25,6 +26,7 @@ export default {
           </a-form-item>
           <a-form-item label="错误日志的文件地址">
             { log.error || '无' }
+            <Error/>
           </a-form-item>
         </a-form>
         <Update/>
@@ -33,6 +35,7 @@ export default {
   },
   components: {
     Update,
+    Error,
   },
 };
 </script>

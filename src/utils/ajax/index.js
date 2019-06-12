@@ -4,7 +4,7 @@ import pkg from '@/../package.json';
 import { message } from 'ant-design-vue';
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API_DEV,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 12000,
 });
 

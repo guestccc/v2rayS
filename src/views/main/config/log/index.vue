@@ -18,7 +18,7 @@ export default {
           target="_blank">https://www.v2ray.com/chapter_02/01_overview.html#logobject</a>
         <a-form>
           <a-form-item label="日志级别">
-            { log.loglevel || 'warning' }
+            { log.loglevel }
           </a-form-item>
           <a-form-item label="访问日志的文件地址">
             { log.access || '无' }

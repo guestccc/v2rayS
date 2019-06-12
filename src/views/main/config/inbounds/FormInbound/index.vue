@@ -1,9 +1,9 @@
 <template>
-  <a-drawer-pro
+  <y-drawer
     :visible="visibleDrawers"
     :title="protocol.label"
     :width="720"
-    @ok="submit"
+    @cancel="submit"
     @close="setVisibleDrawers()"
     footer>
     <a-form>
@@ -33,13 +33,13 @@
     </a-form>
     <settings :protocol="protocol"/>
     <stream-settings/>
-  </a-drawer-pro>
+  </y-drawer>
 </template>
 
 <script>
 import { mapState, mapMutations, mapActions } from 'vuex';
 
-import ADrawerPro from '@/components/ADrawerPro.vue';
+import YDrawer from '@/components/YDrawer.vue';
 import Settings from './Settings/index.vue';
 import StreamSettings from './StreamSettings/index.vue';
 
@@ -60,7 +60,7 @@ export default {
     ]),
   },
   components: {
-    ADrawerPro,
+    YDrawer,
     Settings,
     StreamSettings,
   },

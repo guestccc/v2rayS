@@ -128,7 +128,11 @@ const state = {
   settings: null,
   clickInfo: null,
   qrcodeValue: '',
-  log: {},
+  log: {
+    loglevel: 'warning',
+    access: '',
+    error: '',
+  },
   api: {},
   dns: {},
   stats: {},
@@ -152,8 +156,12 @@ const mutations = {
   },
   setConfig(state, data) {
     Object.keys(data).forEach((item) => {
-      state[item] = data[item];
+      Object.assign(state[item], data[item]);
+      // state[item] = Object.assign({ ...state[item] }, data[item]);
     });
+  },
+  setConfigLog(state, data) {
+    Object.assign(state.log, data);
   },
   setInbounds(state, data) {
     state.inbounds = data;

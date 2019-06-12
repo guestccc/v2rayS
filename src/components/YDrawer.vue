@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     handleOk() {
-      this.$emit('ok');
+      this.$emit('cancel');
     },
     handleClose() {
       this.$emit('close');

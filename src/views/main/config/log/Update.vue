@@ -65,11 +65,13 @@ export default {
     ));
     return (
       <div class="update">
-        <a-button onClick={eventOpen}>编辑</a-button>
+        <a-button
+          onClick={eventOpen}
+          type="primary">编辑</a-button>
         <y-drawer
           title="编辑"
           placement="right"
-          onCancel={eventCancel}
+          onOk={eventCancel}
           onClose={eventClose}
           visible={visible}
           width={500}

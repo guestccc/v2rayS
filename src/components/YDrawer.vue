@@ -1,40 +1,3 @@
-<template>
-  <a-drawer
-    @close="handleClose"
-    :visible="visible"
-    :width="width"
-    :title="title"
-    placement="right"
-    class="test">
-    <slot/>
-    <div
-      v-if="footer"
-      class="footer"
-      :style="{
-        position: 'absolute',
-        bottom: 0,
-        width: '100%',
-        borderTop: '1px solid #e8e8e8',
-        padding: '10px 16px',
-        textAlign: 'content',
-        left: 0,
-        background: '#fff',
-        borderRadius: '0 0 4px 4px',
-      }"
-    >
-      <a-button
-        style="marginRight: 8px"
-        @click="handleClose"
-      >
-        Cancel
-      </a-button>
-      <a-button @click="handleOk" type="primary">
-        Submit
-      </a-button>
-    </div>
-  </a-drawer>
-</template>
-
 <script>
 export default {
   props: {
@@ -44,20 +7,65 @@ export default {
     },
     title: {
       type: String,
-      default: 'title',
+      default: undefined,
     },
     width: {
       type: Number,
       default: 200,
+    },
+    noPadding: {
+      type: Boolean,
+      default: false,
     },
     footer: {
       type: Boolean,
       default: false,
     },
   },
+  render() {
+    const {
+      $slots,
+      visible,
+      width,
+      title,
+      noPadding,
+      footer,
+      handleOk,
+      handleClose,
+    } = this;
+    const footerVNode = footer ? (
+      <div class="y-drawer-footer">
+        <a-button onClick={handleClose}>
+          Cancel
+        </a-button>
+        <a-button
+          onClick={handleOk}
+          type="primary">
+          Submit
+        </a-button>
+      </div>
+    ) : null;
+    return (
+      <a-drawer
+        onClose={handleClose}
+        visible={visible}
+        width={width}
+        placement="right"
+        wrapClassName="y-drawer">
+        <div class={['y-drawer-header', title ? 'is-title' : '']}>
+          { title || $slots.title }
+        </div>
+        <div
+          class={['y-drawer-body', noPadding ? 'no-padding' : '']}>
+          { $slots.default }
+        </div>
+        { footerVNode }
+      </a-drawer>
+    );
+  },
   methods: {
     handleOk() {
-      this.$emit('cancel');
+      this.$emit('ok');
     },
     handleClose() {
       this.$emit('close');
@@ -67,9 +75,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .ant-drawer-header {
-  position: fixed;
-  top: 0;
-  right: 0;
+
+</style>
+
+<style lang="scss">
+.y-drawer {
+  .ant-drawer-wrapper-body {
+    .ant-drawer-body {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      height: 100%;
+      .y-drawer-header {
+        min-height: 56px;
+        border-bottom: 1px solid #e8e8e8;
+        &.is-title {
+          padding-left: 15px;
+          line-height: 56px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .y-drawer-body {
+        flex: 1;
+        padding: 15px;
+        overflow: auto;
+        &.no-padding {
+          padding: 0;
+        }
+      }
+      .y-drawer-footer {
+        padding: 10px;
+        min-height: 52px;
+        border-top: 1px solid #e8e8e8;
+        .ant-btn {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
 }
 </style>

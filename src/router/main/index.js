@@ -1,7 +1,4 @@
 import userinfo from './userinfo';
-import single from './single';
-import singles from './singles';
-import many from './many';
 import status from './status';
 import config from './config';
 import client from './client';
@@ -18,9 +15,6 @@ export default {
       redirect: '/main/userinfo',
     },
     userinfo,
-    single,
-    singles,
-    many,
     status,
     config,
     client,

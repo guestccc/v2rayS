@@ -156,8 +156,11 @@ const mutations = {
   },
   setConfig(state, data) {
     Object.keys(data).forEach((item) => {
-      Object.assign(state[item], data[item]);
-      // state[item] = Object.assign({ ...state[item] }, data[item]);
+      if (Array.isArray(state[item])) {
+        state[item] = data[item];
+      } else {
+        Object.assign(state[item], data[item]);
+      }
     });
   },
   setConfigLog(state, data) {

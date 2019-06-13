@@ -1,7 +1,7 @@
 <template>
   <div class="config">
     <div class="btns">
-      <a-button @click="networkGetConfigInbound">刷新</a-button>
+      <!-- <a-button @click="networkGetConfigInbound">刷新</a-button> -->
       <add-inbound/>
     </div>
     <y-cards/>
@@ -18,14 +18,6 @@ import Qrcode from './Qrcode.vue';
 
 export default {
   name: 'inbounds',
-  methods: {
-    networkGetConfigInbound() {
-      this.$store.dispatch('config/getConfigInbound');
-    },
-  },
-  created() {
-    this.networkGetConfigInbound();
-  },
   components: {
     AddInbound,
     YCards,

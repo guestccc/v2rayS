@@ -117,7 +117,7 @@ export default {
   margin: 0;
   padding-left: 2px;
   height: 100%;
-  color: #fff;
+  color: #eee;
   background: #000;
   white-space: pre-wrap;
   word-wrap: break-word;

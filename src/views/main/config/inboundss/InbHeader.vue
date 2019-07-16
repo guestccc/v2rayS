@@ -1,6 +1,4 @@
 <script>
-import { mapMutations } from 'vuex';
-
 export default {
   data() {
     return {
@@ -18,18 +16,8 @@ export default {
     };
   },
   methods: {
-    ...mapMutations('configInbound', [
-      'setVisibleDrawerShow',
-    ]),
     eventClickModal() {
       this.visible = true;
-    },
-    eventClickCardGrid(row) {
-      console.log('------------');
-      console.log(row);
-      console.log('------------');
-      this.handleCancel();
-      this.setVisibleDrawerShow();
     },
     handleCancel() {
       this.visible = false;
@@ -37,20 +25,21 @@ export default {
   },
   render() {
     const {
+      // data
       visible,
       protocolOptions,
 
       // methods
-      eventClickCardGrid,
       eventClickModal,
       handleCancel,
     } = this;
     const cardGrids = protocolOptions.map(protocol => (
-      <a-card-grid
-        key={protocol.value}
-        onClick={() => eventClickCardGrid(protocol)}>
-        {protocol.label}
-      </a-card-grid>
+      <router-link to={`inbounds/create/${protocol.value}`}>
+        <a-card-grid
+          key={protocol.value}>
+          {protocol.label}
+        </a-card-grid>
+      </router-link>
     ));
     return (
       <div class="header">
@@ -61,7 +50,7 @@ export default {
           v-model={visible}
           onCancel={handleCancel}
         >
-          <a-card>
+          <a-card class="protocol-card">
             {cardGrids}
           </a-card>
         </a-modal>
@@ -71,16 +60,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// .add-inbound__modal {
-//   .ant-modal-body {
-//     padding: 0;
+<style lang="scss" scoped>
+// /deep/ .ant-card {
+//   .ant-card-grid {
+//     width: 100%;
+//     cursor: pointer;
 //   }
 // }
-.ant-card {
-  .ant-card-grid {
-    width: 100%;
-    cursor: pointer;
+/deep/ .protocol-card {
+  .ant-card-body {
+    padding: 0;
   }
 }
 </style>

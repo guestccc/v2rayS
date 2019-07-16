@@ -4,7 +4,6 @@ import { mapState, mapMutations } from 'vuex';
 export default {
   data() {
     return {
-      visible: false,
     };
   },
   computed: {
@@ -20,7 +19,6 @@ export default {
   render() {
     const {
       // data
-      // visible,
 
       // computed
       visibleDrawer,
@@ -32,10 +30,25 @@ export default {
       <a-drawer
         title="Basic Drawer"
         placement="right"
-        closable={false}
+        wrapClassName="inb-drawer"
         onClose={setVisibleDrawerHide}
         visible={visibleDrawer}
       >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
@@ -44,3 +57,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+/deep/ .inb-drawer {
+  .ant-drawer-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: pink;
+  }
+}
+p {
+  line-height: 100px;
+}
+</style>

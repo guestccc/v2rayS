@@ -37,7 +37,7 @@ export default {
           path: 'create/:protocol?',
           component: InboundsCreate,
           meta: {
-            name: 'inbounds_create',
+            name: 'create',
           },
         },
       ],

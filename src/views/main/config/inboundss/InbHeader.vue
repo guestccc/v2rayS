@@ -5,7 +5,7 @@ export default {
       visible: false,
       protocolOptions: [
         {
-          label: 'Vmess',
+          label: 'VMess',
           value: 'vmess',
         },
         {
@@ -35,8 +35,7 @@ export default {
     } = this;
     const cardGrids = protocolOptions.map(protocol => (
       <router-link to={`inbounds/create/${protocol.value}`}>
-        <a-card-grid
-          key={protocol.value}>
+        <a-card-grid key={protocol.value}>
           {protocol.label}
         </a-card-grid>
       </router-link>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 import config from './modules/config';
 import configInbound from './modules/configInbound';
@@ -11,4 +12,5 @@ export default new Vuex.Store({
     config,
     configInbound,
   },
+  plugins: [createPersistedState()],
 });

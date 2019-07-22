@@ -48,12 +48,21 @@ export default {
           value: 'tcp,udp',
         },
       ],
+      otaOptions: [
+        {
+          label: 'true',
+          value: 'true',
+        },
+        {
+          label: 'false',
+          value: 'false',
+        },
+      ],
       form: null,
       decorators: {
         listen: [
           'listen',
           {
-            initialValue: '13',
             rules: [{ required: true, message: 'listen is required!' }],
           },
         ],
@@ -75,12 +84,6 @@ export default {
             rules: [{ required: true, message: 'settings.password is required!' }],
           },
         ],
-        settings_email: [
-          'settings.email',
-          {
-            rules: [{ required: true, message: 'settings.email is required!' }],
-          },
-        ],
         settings_method: [
           'settings.method',
           {
@@ -91,6 +94,25 @@ export default {
           'settings.network',
           {
             rules: [{ required: true, message: 'settings.network is required!' }],
+          },
+        ],
+        settings_email: [
+          'settings.email',
+          {
+            rules: [{ required: true, message: 'settings.email is required!' }],
+          },
+        ],
+        settings_level: [
+          'settings.level',
+          {
+            initialValue: 0,
+            rules: [{ required: true, message: 'settings.level is required!' }],
+          },
+        ],
+        settings_ota: [
+          'settings.ota',
+          {
+            rules: [{ required: true, message: 'settings.ota is required!' }],
           },
         ],
       },
@@ -111,6 +133,10 @@ export default {
         if (err) return;
         console.log('Received values of form: ', values);
       });
+    },
+    handleReset() {
+      this.form.resetFields();
+      this.updateShadowsocksFrom(this.form.getFieldsValue());
     },
   },
   created() {
@@ -133,11 +159,17 @@ export default {
           'settings.method': $form.createFormField({
             value: shadowsocksForm.settings.method,
           }),
+          'settings.network': $form.createFormField({
+            value: shadowsocksForm.settings.network,
+          }),
           'settings.email': $form.createFormField({
             value: shadowsocksForm.settings.email,
           }),
-          'settings.network': $form.createFormField({
-            value: shadowsocksForm.settings.network,
+          'settings.level': $form.createFormField({
+            value: shadowsocksForm.settings.level,
+          }),
+          'settings.ota': $form.createFormField({
+            value: shadowsocksForm.settings.ota,
           }),
         };
       },
@@ -149,15 +181,20 @@ export default {
       // data
       methodOptions,
       networkOptions,
+      otaOptions,
       form,
       decorators,
       // methods
       handleSubmit,
+      handleReset,
     } = this;
     const methodSelectOption = methodOptions.map(item => (
       <a-select-option value={item.value}>{item.label}</a-select-option>
     ));
     const networkSelectOption = networkOptions.map(item => (
+      <a-select-option value={item.value}>{item.label}</a-select-option>
+    ));
+    const otaSelectOption = otaOptions.map(item => (
       <a-select-option value={item.value}>{item.label}</a-select-option>
     ));
     return (
@@ -219,7 +256,16 @@ export default {
           <a-col span={12}>
             <a-form-item label="用户等级">
               <a-input
-                v-decorator={decorators.settings_email}/>
+                v-decorator={decorators.settings_level}/>
+            </a-form-item>
+          </a-col>
+        </a-row>
+        <a-row gutter={16}>
+          <a-col span={12}>
+            <a-form-item label="OTA">
+              <a-select v-decorator={decorators.settings_ota}>
+                {otaSelectOption}
+              </a-select>
             </a-form-item>
           </a-col>
         </a-row>
@@ -227,6 +273,9 @@ export default {
           <a-button
             type="primary"
             html-type="submit">
+            Submit
+          </a-button>
+          <a-button onClick={handleReset}>
             Submit
           </a-button>
         </a-form-item>

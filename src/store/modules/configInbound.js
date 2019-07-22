@@ -4,18 +4,18 @@ const state = {
   visibleDrawer: false,
   inbounds: [],
   shadowsocksForm: {
-    port: 1080,
-    listen: '127.0.0.1',
     protocol: 'shadowsocks',
+    listen: '',
+    port: '',
     settings: {
-      email: 'love@v2ray.com',
-      method: 'aes-128-cfb',
-      password: 'password',
-      level: 0,
-      ota: true,
-      network: 'tcp',
+      email: '',
+      method: '',
+      password: '',
+      level: '',
+      ota: '',
+      network: '',
     },
-    tag: '标识',
+    tag: '',
   },
 };
 
@@ -28,8 +28,14 @@ const mutations = {
   setVisibleDrawerHide(state) {
     state.visibleDrawer = false;
   },
-  updateShadowsocksFrom(state, data) {
+  updateShadowsocksFrom(state, data = {}) {
+    console.log('------------');
+    console.log('form change');
+    console.log('------------');
     Object.assign(state.shadowsocksForm, data);
+    console.log('------------');
+    console.log('shadowsocksForm', state.shadowsocksForm);
+    console.log('------------');
   },
 };
 

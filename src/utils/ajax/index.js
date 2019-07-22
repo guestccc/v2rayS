@@ -1,7 +1,6 @@
 import axios from 'axios';
-import pkg from '@/../package.json';
-
 import { message } from 'ant-design-vue';
+import pkg from '@/../package.json';
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API_PRO,

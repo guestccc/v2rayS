@@ -8,7 +8,7 @@ const state = {
     listen: '',
     port: '',
     settings: {
-      email: '',
+      email: '123123',
       method: '',
       password: '',
       level: '',
@@ -29,12 +29,9 @@ const mutations = {
     state.visibleDrawer = false;
   },
   updateShadowsocksFrom(state, data = {}) {
-    console.log('------------');
-    console.log('form change');
-    console.log('------------');
     Object.assign(state.shadowsocksForm, data);
     console.log('------------');
-    console.log('shadowsocksForm', state.shadowsocksForm);
+    console.log('change', state.shadowsocksForm);
     console.log('------------');
   },
 };

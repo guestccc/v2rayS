@@ -1,5 +1,32 @@
 import { message } from 'ant-design-vue';
 
+/**
+ * 随机整数
+ * @param {number} min 随机数的最小值
+ * @param {number} max 随机数的最大值
+ * @return {number} xxx
+ */
+export function randomInteger(min = 0, max = 9999) {
+  const difference = max - min;
+  if (difference <= 0) {
+    console.error('min > max');
+    return false;
+  }
+  return Math.floor(Math.random() * (difference + 1) + min);
+}
+
+export function randomString(
+  lenght = 6,
+  str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+) {
+  const strLen = str.length;
+  let res = '';
+  Array(lenght).fill().forEach(() => {
+    res += str[randomInteger(0, strLen - 1)];
+  });
+  return res;
+}
+
 export function getType(obj) {
   if (Object.prototype.toString.call(obj) === '[object Object]') {
     return 'Object';

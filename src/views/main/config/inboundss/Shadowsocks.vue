@@ -1,5 +1,6 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
+import { randomInteger, randomString } from '@/utils/index';
 
 export default {
   data() {
@@ -127,6 +128,16 @@ export default {
     ...mapMutations('configInbound', [
       'updateShadowsocksFrom',
     ]),
+    eventClickPortRandom() {
+      this.form.setFieldsValue({
+        port: randomInteger(1001, 9999),
+      });
+    },
+    eventClickPwdRandom() {
+      this.form.setFieldsValue({
+        'settings.password': randomString(16),
+      });
+    },
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
@@ -136,7 +147,6 @@ export default {
     },
     handleReset() {
       this.form.resetFields();
-      this.updateShadowsocksFrom(this.form.getFieldsValue());
     },
   },
   created() {
@@ -173,7 +183,11 @@ export default {
           }),
         };
       },
-      onValuesChange: (_, values) => this.updateShadowsocksFrom(values),
+      onValuesChange: (_, values) => {
+        console.log('------------');
+        console.log(values);
+        console.log('------------');
+      },
     });
   },
   render() {
@@ -185,6 +199,8 @@ export default {
       form,
       decorators,
       // methods
+      eventClickPortRandom,
+      eventClickPwdRandom,
       handleSubmit,
       handleReset,
     } = this;
@@ -209,24 +225,34 @@ export default {
             </a-form-item>
           </a-col>
           <a-col span={12}>
-            <a-form-item label="端口">
-              <a-input v-decorator={decorators.port}/>
+            <a-form-item>
+              <span slot="label">
+                端口
+                <a
+                  onClick={eventClickPortRandom}
+                  class="attach">随机生成</a>
+              </span>
+              <a-input-number v-decorator={decorators.port}/>
             </a-form-item>
           </a-col>
         </a-row>
         <a-row gutter={16}>
           <a-col>
             <a-form-item label="标签">
-              <a-input
-                v-decorator={decorators.tag}/>
+              <a-input v-decorator={decorators.tag}/>
             </a-form-item>
           </a-col>
         </a-row>
         <a-row gutter={16}>
           <a-col>
-            <a-form-item label="密码">
-              <a-input
-                v-decorator={decorators.settings_password}/>
+            <a-form-item>
+              <span slot="label">
+                密码
+                <a
+                  onClick={eventClickPwdRandom}
+                  class="attach">随机生成</a>
+              </span>
+              <a-input v-decorator={decorators.settings_password}/>
             </a-form-item>
           </a-col>
         </a-row>
@@ -249,14 +275,12 @@ export default {
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="邮箱">
-              <a-input
-                v-decorator={decorators.settings_email}/>
+              <a-input v-decorator={decorators.settings_email}/>
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="用户等级">
-              <a-input
-                v-decorator={decorators.settings_level}/>
+              <a-input-number v-decorator={decorators.settings_level}/>
             </a-form-item>
           </a-col>
         </a-row>
@@ -276,7 +300,7 @@ export default {
             Submit
           </a-button>
           <a-button onClick={handleReset}>
-            Submit
+            Clear
           </a-button>
         </a-form-item>
       </a-form>

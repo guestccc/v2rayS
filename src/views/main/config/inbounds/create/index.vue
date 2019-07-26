@@ -1,6 +1,5 @@
 <script>
-import Shadowsocks from '../Shadowsocks.vue';
-import Vmess from '../Vmess.vue';
+import InbForm from '../InbForm/index.vue';
 
 export default {
   data() {
@@ -9,14 +8,13 @@ export default {
         {
           label: 'Shadowsocks',
           key: 'shadowsocks',
-          component: Shadowsocks,
         },
         {
           label: 'VMess',
           key: 'vmess',
-          component: Vmess,
         },
       ],
+      protocol: 'shadowsocks',
     };
   },
   computed: {
@@ -28,36 +26,50 @@ export default {
     },
   },
   methods: {
+    eventChangeTab(v) {
+      this.protocol = v;
+    },
   },
   render() {
     const {
       // data
       tabOptions,
+      protocol,
+
+      // computed
       defaultActiveKey,
+
+      // methods
+      eventChangeTab,
     } = this;
     const tabPanes = tabOptions.map(item => (
       <a-tab-pane tab={item.label} key={item.key}>
-        <item.component/>
+        <inb-form protocol={protocol}/>
       </a-tab-pane>
     ));
     return (
-      <div class="inbounds-create">
-        <a-tabs
-          defaultActiveKey={defaultActiveKey}
-          class="inbounds-create_tabs">
-          {tabPanes}
-        </a-tabs>
-        <div class="inbounds-create_tabs">预览</div>
+      <div class="inbound-create">
+        <div class="inbound-create_tabs">
+          <a-tabs
+            defaultActiveKey={defaultActiveKey}
+            onChange={eventChangeTab}>
+            {tabPanes}
+          </a-tabs>
+        </div>
+        <div class="inbound-create_tabs">预览</div>
       </div>
     );
+  },
+  components: {
+    InbForm,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.inbounds-create {
+.inbound-create {
   display: flex;
-  &_tabs {
+  & > &_tabs {
     width: 600px;
   }
 }

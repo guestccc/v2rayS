@@ -1,5 +1,6 @@
 <script>
 import { mapState } from 'vuex';
+import { logDocUrl } from '@/plugins/configDocUrl';
 
 import Update from './Update.vue';
 import DrawerLog from './DrawerLog.vue';
@@ -15,8 +16,8 @@ export default {
     return (
       <div class="log">
         <a
-          href="https://www.v2ray.com/chapter_02/01_overview.html#logobject"
-          target="_blank">https://www.v2ray.com/chapter_02/01_overview.html#logobject</a>
+          href={logDocUrl}
+          target="_blank">{logDocUrl}</a>
         <div class="top-bar">
           <Update/>
           <DrawerLog/>

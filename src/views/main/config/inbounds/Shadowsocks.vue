@@ -185,7 +185,7 @@ export default {
       },
       onValuesChange: (_, values) => {
         console.log('------------');
-        console.log(values);
+        console.log(_, values);
         console.log('------------');
       },
     });

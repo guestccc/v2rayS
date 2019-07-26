@@ -1,28 +1,26 @@
 <template>
   <div class="config">
-    <div class="btns">
-      <!-- <a-button @click="networkGetConfigInbound">刷新</a-button> -->
-      <add-inbound/>
-    </div>
-    <y-cards/>
-    <form-inbound/>
-    <qrcode/>
+    <inb-header/>
+    <inb-content/>
   </div>
 </template>
 
 <script>
-import AddInbound from './AddInbound/index.vue';
-import YCards from './YCards/index.vue';
-import FormInbound from './FormInbound/index.vue';
-import Qrcode from './Qrcode.vue';
+import { mapState } from 'vuex';
+
+import InbHeader from './InbHeader.vue';
+import InbContent from './InbContent.vue';
 
 export default {
-  name: 'inbounds',
+  name: 'inboundss',
+  computed: {
+    ...mapState('config', [
+      'inbounds',
+    ]),
+  },
   components: {
-    AddInbound,
-    YCards,
-    FormInbound,
-    Qrcode,
+    InbHeader,
+    InbContent,
   },
 };
 </script>

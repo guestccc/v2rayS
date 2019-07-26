@@ -1,12 +1,18 @@
 /* eslint-disable no-shadow */
 
 const state = {
-  visibleDrawer: false,
   inbounds: [],
+  inbound: {
+    protocol: 'shadowsocks',
+    listen: '',
+    port: '',
+    tag: '',
+  },
   shadowsocksForm: {
     protocol: 'shadowsocks',
     listen: '',
     port: '',
+    tag: '',
     settings: {
       email: '123123',
       method: '',
@@ -15,19 +21,12 @@ const state = {
       ota: '',
       network: '',
     },
-    tag: '',
   },
 };
 
 const getters = {};
 
 const mutations = {
-  setVisibleDrawerShow(state) {
-    state.visibleDrawer = true;
-  },
-  setVisibleDrawerHide(state) {
-    state.visibleDrawer = false;
-  },
   updateShadowsocksFrom(state, data = {}) {
     Object.assign(state.shadowsocksForm, data);
     console.log('------------');

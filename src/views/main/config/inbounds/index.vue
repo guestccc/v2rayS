@@ -9,10 +9,10 @@
 import { mapState } from 'vuex';
 
 import InbHeader from './InbHeader.vue';
-import InbContent from './InbContent.vue';
+import InbContent from './InbContent/index.vue';
 
 export default {
-  name: 'inboundss',
+  name: 'inbounds',
   computed: {
     ...mapState('config', [
       'inbounds',

@@ -4,7 +4,7 @@ import { message } from 'ant-design-vue';
 import { JSONCopy } from '@/utils';
 
 import { getConfigInbound, createConfigInbound, updateConfigInbound } from '@/api/main/config/inbounds';
-import { getConfig } from '../../api/main/config';
+import { getConfig } from '@/api/main/config';
 
 const protocols = [
   {

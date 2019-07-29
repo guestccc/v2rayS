@@ -75,9 +75,6 @@ export default {
         ],
         network: [
           'network',
-          {
-            rules: [{ required: true, message: 'network is required!' }],
-          },
         ],
         email: [
           'email',
@@ -118,11 +115,11 @@ export default {
   },
   created() {
     this.form = this.$form.createForm(this, {
-      onValuesChange: (_, values) => {
-        console.log('------------');
-        console.log(values);
-        console.log('------------');
-      },
+      // onValuesChange: (_, values) => {
+      //   console.log('------------');
+      //   console.log(values);
+      //   console.log('------------');
+      // },
     });
   },
   render() {
@@ -165,14 +162,19 @@ export default {
         <a-row gutter={16}>
           <a-col span={12}>
             <a-form-item label="加密方式">
-              <a-select v-decorator={decorators.method}>
+              <a-select
+                v-decorator={decorators.method}
+                allowClear>
                 {methodSelectOption}
               </a-select>
             </a-form-item>
           </a-col>
           <a-col span={12}>
             <a-form-item label="网络连接类型">
-              <a-select v-decorator={decorators.network}>
+              <a-select
+                v-decorator={decorators.network}
+                allowClear
+                placeholder="tcp">
                 {networkSelectOption}
               </a-select>
             </a-form-item>
@@ -188,7 +190,10 @@ export default {
             <a-form-item label="用户等级">
               <a-input-number
                 v-decorator={decorators.level}
-                placeholder="0"/>
+                placeholder="0"
+                min={0}
+                max={999999}
+                precision={0}/>
             </a-form-item>
           </a-col>
         </a-row>
@@ -197,6 +202,7 @@ export default {
             <a-form-item label="OTA">
               <a-select
                 v-decorator={decorators.ota}
+                allowClear
                 placeholder="auto">
                 {otaSelectOption}
               </a-select>

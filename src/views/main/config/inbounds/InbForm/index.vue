@@ -3,6 +3,7 @@ import Shadowsocks from './Shadowsocks.vue';
 import Vmess from './Vmess.vue';
 
 import { randomInteger } from '@/utils/index';
+import { createConfigInbound } from '@/api/main/config/inbounds';
 
 export default {
   props: {
@@ -51,20 +52,29 @@ export default {
         port: randomInteger(1001, 65535),
       });
     },
+    async networkCreateConfigInbound(body) {
+      const res = await createConfigInbound(body);
+      console.log('------------');
+      console.log(res);
+      console.log('------------');
+    },
     async handleSubmit() {
-      const [form, settingForm] = await this.handleValidateFieldsAll();
-      if (form.err || settingForm.err) return;
-      console.log('------------');
-      console.log(form.values);
-      console.log(settingForm.values);
-      console.log('------------');
+      const [form, settingsForm] = await this.handleValidateFieldsAll();
+      if (form.err || settingsForm.err) return;
+      this.networkCreateConfigInbound({
+        ...form.values,
+        settings: settingsForm.values,
+      });
     },
     handleReset() {
       this.form.resetFields();
       this.$refs.settingsForm.form.resetFields();
     },
     handleValidateFieldsAll() {
-      return Promise.all([this.handleValidateFields(), this.handleValidateFieldsSettingsForm()]);
+      return Promise.all([
+        this.handleValidateFields(),
+        this.handleValidateFieldsSettingsForm(),
+      ]);
     },
     handleValidateFields() {
       return new Promise((a) => {
@@ -90,13 +100,10 @@ export default {
   created() {
     this.decorators.protocol[1].initialValue = this.protocol;
     this.form = this.$form.createForm(this, {
-      // mapPropsToFields: () => {
-      //   const { $form, protocol } = this;
-      //   return {
-      //     protocol: $form.createFormField({
-      //       value: protocol,
-      //     }),
-      //   };
+      // onValuesChange: (_) => {
+      //   console.log('------------');
+      //   console.log(_.getFieldsValue());
+      //   console.log('------------');
       // },
     });
   },

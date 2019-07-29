@@ -17,7 +17,7 @@ export default {
       eventClickModal,
     } = this;
     return (
-      <div class="header">
+      <div class="inbounds-header">
         <a-button onClick={eventClickModal}>添加账号</a-button>
       </div>
     );

@@ -33,7 +33,7 @@ export default {
         },
         {
           label: 'chacha20-poly1305(chacha20-ietf-poly1305)',
-          value: 'chacha20-poly1305(chacha20-ietf-poly1305)',
+          value: 'chacha20-poly1305',
         },
       ],
       networkOptions: [

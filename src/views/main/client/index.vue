@@ -20,5 +20,21 @@
       <a-divider orientation="left">Linux</a-divider>
       list
     </div>
+    <div class="client-row">
+      <div class="client-row-box"></div>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.client {
+  &-row {
+    height: 800px;
+    background: pink;
+    &-box {
+      height: 600px;
+      background: red;
+    }
+  }
+}
+</style>

@@ -21,6 +21,7 @@ import {
   Tooltip,
   Row,
   Col,
+  Tag,
 
   Message,
 } from 'ant-design-vue';
@@ -46,5 +47,6 @@ Vue.use(Popconfirm);
 Vue.use(Tooltip);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(Tag);
 
 Vue.prototype.$message = Message;

@@ -7,10 +7,6 @@ import Vmess from './Vmess.vue';
 export default {
   data() {
     return {
-      options: {
-        vmess: Vmess,
-        shadowsocks: Shadowsocks,
-      },
     };
   },
   computed: {
@@ -19,15 +15,17 @@ export default {
     ]),
   },
   methods: {
-    handleComp(protocol) {
-      console.log('------------');
-      console.log(protocol);
-      console.log('------------');
+    handleComponent(protocol, row) {
+      const data = {
+        props: {
+          row,
+        },
+      };
       switch (protocol) {
         case 'shadowsocks':
-          return <Shadowsocks test/>;
+          return <Shadowsocks { ...data }/>;
         case 'vmess':
-          return <Vmess/>;
+          return <Vmess { ...data }/>;
         default:
           return null;
       }
@@ -35,23 +33,52 @@ export default {
   },
   render() {
     const {
-      options,
+      // data
+
+      // computed
       inbounds,
+
+      // methods
+      handleComponent,
     } = this;
-    console.log('------------');
-    console.log(options);
-    console.log('------------');
     const option = inbounds.map(item => (
-      <div>
-        <p>title</p>
-        <components is={options[item.protocol]}/>
-      </div>
+      <a-card class="inbounds-list-card">
+        <div
+          slot="title"
+          class="inbounds-list-card-title">
+          <a-tag color="#f50">{item.protocol}</a-tag>
+          <a-tag color="#108ee9">{item.listen || '0.0.0.0'}</a-tag>
+          <a-tag color="#87d068">{item.port}</a-tag>
+        </div>
+        <div slot="extra">
+          <a-icon type="delete"/>
+          <a-icon type="edit"/>
+          <a-icon type="delete"/>
+        </div>
+        <a-form layout="inline">
+          { handleComponent(item.protocol, item.settings) }
+        </a-form>
+      </a-card>
     ));
     return (
-      <div class="inbounds-content">
+      <div class="inbounds-list">
         {option}
       </div>
     );
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.inbounds-list {
+  &-card {
+    &-title {
+      span {
+        // margin-right: 20px;
+        display: inline-block;
+        width: 100px;
+      }
+    }
+  }
+}
+</style>
